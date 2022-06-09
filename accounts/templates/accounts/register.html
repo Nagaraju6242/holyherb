@@ -1,0 +1,52 @@
+{% load static %} {% include 'header.html' %}
+
+
+<form action="/allauth/signup/">
+  {{ form.as_p }}
+  <input type="submit" value="Submit">
+</form>
+
+<div class="login_flex_container">
+  <div class="page_register">
+    <form action="{% url 'register' %}" method="POST">
+      {% csrf_token %}
+      <h3>Create an account</h3>
+      <label for="name">Name <span class="text-danger">*</span></label>
+      <br />
+      <input type="text" name="name" placeholder="Write full name" />
+      <br />
+      <label for="number">Phone Number <span class="text-danger">*</span></label
+      ><br />
+      <input type="text" name="number" placeholder="Example +00 0000000000" />
+      <br />
+      <label for="email">Email ID <span class="text-danger">*</span></label>
+      <br />
+      <input type="email" name="username" placeholder="Write email address" />
+      <br />
+      <label for="password">Password <span class="text-danger">*</span></label>
+      <br />
+      <input
+        type="password"
+        name="password"
+        placeholder="Atleast 8 Characters"
+      />
+      <br />
+      <label for="password2"
+        >Confirm Password <span class="text-danger">*</span></label
+      >
+      <br />
+      <input type="password" name="password2" placeholder="Re-type Password" />
+      <br />
+      <input type="submit" value="Continue" class="submit-button" />
+    </form>
+    <a class="old_login" href="{% url 'login' %}">
+      Already a User <u>Login Here</u>
+    </a>
+  </div>
+</div>
+
+<script>
+  // window.location.href = "/"
+</script>
+
+{% include 'footer.html' %}

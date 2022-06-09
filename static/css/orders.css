@@ -1,0 +1,160 @@
+:root {
+  --font-large: 24px;
+  --font-small: 18px;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fcffff;
+  font-family: "Raleway", sans-serif;
+  margin: 30px 50px;
+  font-size: var(--font-small);
+  position: relative;
+  padding: 0 0 100px 0;
+  min-height: 90vh;
+}
+
+.container {
+  margin: 10px 80px;
+}
+
+.heading {
+  font: normal normal normal 25px/40px Raleway;
+  letter-spacing: 0px;
+  color: #3c3c3c;
+  text-align: right;
+  margin-bottom: 3rem;
+}
+
+.main-grid,
+.main-grid-head {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.57);
+}
+
+.no-orders {
+  font-size: 2rem;
+  letter-spacing: 0px;
+  color: #858585;
+  text-transform: uppercase;
+}
+
+.main-grid {
+  padding: 10px 0;
+  min-height: 120px;
+}
+
+.grid-item .product-holder * {
+  vertical-align: middle;
+}
+
+.grid-item .product-holder span {
+  margin-left: 10px;
+}
+
+.grid-item img {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.item-date {
+  color: #7c7c7c;
+  font-weight: 500;
+}
+
+.item-status {
+  color: #7c7c7c;
+  font-weight: 500;
+}
+
+.item-quanity {
+  text-align: center;
+  font-size: var(--font-large);
+}
+
+.item-price {
+  text-align: right;
+  font-size: var(--font-large);
+}
+
+.color-dark {
+  color: #343434;
+  font-weight: 600;
+}
+
+.color-light {
+  color: #7c7c7c;
+}
+
+.rupee {
+  font-family: Roboto, sans-serif;
+}
+
+.total-price {
+  text-align: center;
+  color: #7c7c7c;
+}
+
+.price {
+  text-align: right;
+  font-weight: 600;
+  font-size: var(--font-large);
+}
+
+.login_show {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font: normal normal normal 40px/40px Raleway;
+  letter-spacing: 0px;
+  color: #3c3c3c;
+}
+
+.mail-link {
+  position: absolute;
+  bottom: 0;
+  color: #000000;
+  text-decoration: none;
+  font-size: var(--font-large);
+  margin: 20px 80px;
+  display: inline-block;
+}
+
+@media screen and (max-width: 1290px) {
+  body {
+    --font-large: 18px;
+    --font-small: 16px;
+  }
+  .login_show {
+    font: normal normal normal 30px/40px Raleway;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  body {
+    --font-large: 18px;
+    --font-small: 16px;
+    margin: 30px 2.5vw;
+  }
+
+  body .container{
+    margin: 10px 0;
+  }
+}

@@ -1,0 +1,324 @@
+{% load static %}
+{% load humanize %}
+{% include "header.html" %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}" defer/>
+<script>
+  js_urls["logged_in"] = "{{ request.user.is_authenticated }}"
+</script>
+<div class="checkout-main">
+  <div class="checkout-left">
+    <div>
+      <a href="/"
+        ><img
+          class="checkout_logo"
+          src="{% static 'images/holyherb_hindi.png' %}"
+          alt="Holyherb"
+      /></a>
+      <div class="checkout-progress">
+        {% if not object.shipping_address %}
+        <span style="color: #000; font-weight: 600">Information</span>
+        {% else %} Information {% endif %}
+        <img
+          src="{% static 'images/right_arrow.png' %}"
+          class="right_arrow"
+          alt="&rarr;"
+        />
+        {% if object.shipping_address and not object.shipping_method %}
+        <span style="color: #000; font-weight: 600">Payment Method</span>
+        {% else %} Payment Method {% endif %}
+        <img
+          src="{% static 'images/right_arrow.png' %}"
+          class="right_arrow"
+          alt="&rarr;"
+        />
+        {% if object.shipping_address and object.shipping_method %}
+        <span style="color: #000; font-weight: 600">Payment</span>
+        {% else %} Payment {% endif %}
+      </div>
+      <div>
+        <!-- Shipping Address Form -->
+        {% if not object.shipping_address %} 
+          {% if request.user.is_authenticated %}
+        <div class="">
+          {% if address_qs.exists %}
+          <form
+            action="{% url 'checkout_address_reuse' %}"
+            method="POST"
+            class="my-4"
+          >
+            {% csrf_token %} {% for address in address_qs %}
+            <label for="address-{{ address.id }}" class="my-1 pre-address">
+              <input
+                id="address-{{ address.id }}"
+                type="radio"
+                name="shipping_address"
+                value="{{ address.id }}"
+                required
+              />
+              {{ address.get_address }}
+            </label>
+            <br />
+            {% endfor %}
+            <button type="submit" class="pre-address-submit">
+              Use Address
+            </button>
+          </form>
+          <p class="striked-or-parent"><span class="striked-or">OR</span></p>
+          {% endif %}
+        </div>
+        {% else %}
+        <button class="signin-button">Sign in</button>
+        <p class="text-strike"><span>OR</span></p>
+        <div class="contact-div">
+          <p style="font-size: 1.5rem;"><b>Contact Information</b></p>
+          <p>
+            Already have an account? <b><a class="login-button">LOGIN</a></b>
+          </p>
+        </div>
+        {% endif %}
+        <form
+          class="shipping-form"
+          action="{% url 'checkout_address_create' %}"
+          method="POST"
+        >
+          {% csrf_token %}
+          <div>{{ address_form.email }}</div>
+          <div>{{ address_form.phone_number }}</div>
+          <label for="" style="font-size:1.25rem;margin-top:20px;display: flex;align-items: center;justify-content:flex-start;">
+            <input type="checkbox" name="newsletter" value="subscribe"  style="height: 20px;margin: 0;width:auto;">
+            <span style="margin-left:10px;">Keep me updated on news & exclusive offers</span>
+          </label>
+          <small style="color:red" class="errors"></small>
+          <h2 style="margin-top: 1.875rem;font-size: 1.5rem;">Shipping Details</h2>
+          <div class="name-grid">
+            {{ address_form.first_name }} {{ address_form.last_name }}
+          </div>
+          <div>{{ address_form.address_line_1 }}</div>
+          <div>{{ address_form.address_line_2 }}</div>
+          <div>{{ address_form.city }}</div>
+          <div class="area-grid">
+            {{ address_form.country }} {{ address_form.state }} {{ address_form.postal_code }}
+          </div>
+          <input
+            type="submit"
+            value="Continue to Payment Method"
+            class="address-form-submit"
+          />
+        </form>
+        {% endif %}
+
+        <!-- Shipping Methods -->
+        {% if object.shipping_address %} 
+          {% if not object.shipping_method %}
+            <div class="remove-shipping">
+              <div>
+                <p>Shipping address: {{ object.shipping_address.get_address }} </p>
+                <a href="/api/removeshipping/">change</a>
+              </div>
+            </div>
+            <h6 class="shipping-method-heading">Payment method</h6>
+            <div>
+              <form
+                class="shipping-method-form"
+                action="/api/shippingmethod/"
+                method="POST"
+              >
+                {% csrf_token %}
+                <div class="shipping-methods">
+                  {% for shippingmethod in shippingmethods %}
+                  <label class="flex-label" for="shipping-{{ shippingmethod.id }}">
+                    <div>
+                      <input
+                      type="radio"
+                      name="shipping-method"
+                      id="shipping-{{ shippingmethod.id }}"
+                      value="{{ shippingmethod.id }}"
+                      required
+                    />
+                    {{ shippingmethod.title }}
+                    </div>
+                    <!-- <div><span class="rupee">₹</span>{{ shippingmethod.price }}</div> -->
+                  </label>
+                  <hr />
+                  {% endfor %}
+                </div>
+                <div class="flex-submit">
+                  <a class="b-t-s-button" href="/api/removeshipping"
+                    ><span style="color: #000">&#9664;</span> Back to shipping</a
+                  >
+                  <input type="submit" class="track-payment-addition" value="Continue to payment" />
+                </div>
+              </form>
+            </div>
+          {% endif %} 
+        {% endif %}
+      </div>
+    </div>
+    
+    
+    {% if object.shipping_address and object.shipping_method %}
+      <div class="remove-shipping">
+        <div>
+          <p>Shipping address: {{ object.shipping_address.get_address }} </p>
+          <a href="/api/removeshipping/">change</a>
+        </div>
+        <hr>
+        <div>
+          <p>Payment Method: {{ object.shipping_method }}</p>
+          <a href="/api/removepayment/">change</a>
+        </div>
+      </div>
+      <p>All transactions are secured and encrypted</p>
+    {% endif %}
+      
+
+    {% if payment_type == "cod" %}
+      <form action="/cart/success/" method="POST">
+        <input type="hidden" name="method" value="cod">
+        <input type="submit" value="Confirm Order" class="payment-submit">  
+      </form>
+    {% endif %}
+      
+
+    {% if razorpay_order %}
+
+    <button id="rzp-button1" class="razorpay-submit">Pay with Razorpay</button>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      var options = {
+        key: "{{ RAZORPAY_API_KEY }}", // Enter the Key ID generated from the Dashboard
+        amount: "{{ razorpay_order.amount }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        currency: "INR",
+        name: "Holyherb",
+        description: "Payment for your holyherb Order",
+        image: "https://holyherb-bucket.s3.ap-south-1.amazonaws.com/static/images/logo.svg",
+        order_id: "{{ razorpay_order.id }}",
+        callback_url: "/cart/success/",
+        prefill: {
+        name: "{{ request.user.name }}",
+        email: "{{ request.user.email }}",
+        contact: "{{ request.user.number }}"
+        },
+        notes: {
+          address: "Holyherb Payment",
+        },
+        theme: {
+          color: "#227C26",
+        },
+      };
+      var rzp1 = new Razorpay(options);
+      document.getElementById("rzp-button1").onclick = function (e) {
+        rzp1.open();
+        e.preventDefault();
+      };
+    </script>
+    {% endif %}
+  </div>
+
+<!-- Right Side HTML -->
+
+  <div class="checkout-right">
+    <div class="checkout-progress">
+        {% if not object.shipping_address %}
+        <span style="color: #000; font-weight: 600">Information</span>
+        {% else %} Information {% endif %}
+        <img
+          src="{% static 'images/right_arrow.png' %}"
+          class="right_arrow"
+          alt="&rarr;"
+        />
+        {% if object.shipping_address and not object.shipping_method %}
+        <span style="color: #000; font-weight: 600">Payment Method</span>
+        {% else %} Payment Method {% endif %}
+        <img
+          src="{% static 'images/right_arrow.png' %}"
+          class="right_arrow"
+          alt="&rarr;"
+        />
+        {% if object.shipping_address and object.shipping_method %}
+        <span style="color: #000; font-weight: 600">Payment</span>
+        {% else %} Payment {% endif %}
+      </div>
+    <div>
+      <div class="checkout-design-head">
+        <div>Product</div>
+        <div>Price</div>
+      </div>
+      <hr />
+
+      {% for cart_item in object.cart.items.all %}
+      <div class="checkout-pro-grid">
+        <div class="image-con">
+          {% if cart_item.product.images.all.exists %}
+            <img
+              src="{{ cart_item.product.images.all.0.image.url }}"
+              alt="{{ cart_item.product.title }}"
+            />
+          {% endif %}
+          <p>{{ cart_item.quantity }}</p>
+        </div>
+        <p class="checkout-title">{{ cart_item.product.title }}</p>
+        <p class="checkout-price"><span class="rupee">₹ </span>{{ cart_item.price|intcomma }}</p>
+      </div>
+      {% endfor %}
+      <hr />
+      {% if not object.coupon_code %}
+        <div class="coupon-box">
+          <form action="{% url 'coupon' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="coupon_code" placeholder="DISCOUNT CODE" required>
+            <input type="submit" value="APPLY">
+          </form>
+          <small class="coupon-errors" style="color:red;"></small>
+        </div>   
+        
+      {% else %}
+        <div class="coupon-remove-box">
+            <div>{{ object.coupon_code }}</div>
+            <form action="{% url 'coupon-remove' %}" class="coupon-remove-form" method="POST">
+              {% csrf_token %}
+              <button type="submit">Remove</button>
+            </form>
+            <small class="coupon-errors" style="color:red;"></small>
+        </div>
+      {% endif %}
+      <hr />
+      <div style="margin: 10px 0;">
+        <div class="flex-between">
+          <p>subtotal</p> 
+          <p><span class="rupee">₹ </span>{{ object.cart.total|intcomma }}</p>
+        </div>
+
+        {% if object.coupon_code and object.coupon_discount > 0 %}
+          <div class="flex-between">
+            <p>Coupon Discount</p> 
+            <p><span class="rupee"> - ₹</span>{{ object.coupon_discount|intcomma }}</p>
+          </div>
+        {% endif %}
+          
+        
+        {% if object.shipping_method %}
+          <div class="flex-between">
+            <p>shipping</p> 
+            
+            {% if object.shipping_total == 0 %}
+              <p>FREE</p>
+              {% else %}
+              <p><span class="rupee">₹ </span>{{object.shipping_total|intcomma }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+          
+      </div>
+      <hr />
+      <div class="flex-between total" style="margin: 10px 0;">
+        <p>Total</p> 
+        <p><span class="rupee">₹ </span>{{object.total|intcomma }}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/checkout.js' %}"></script>
+
+{% include "footer.html" %}

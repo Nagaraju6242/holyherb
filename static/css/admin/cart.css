@@ -1,0 +1,15 @@
+.form-row.field-items .readonly{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    row-gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-heading{
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 5px 0;
+    background-color: #79aec8;
+}

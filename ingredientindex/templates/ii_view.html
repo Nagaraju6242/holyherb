@@ -1,0 +1,121 @@
+{% include "header.html" %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/new_category.css' %}" />
+
+<div class="main"> 
+  <div class="small-nav">
+    <div class="navigation">
+      <a href="/">Home<span></span></a> /
+      <a href="{% url 'ii_home' %}">Ingredients Index <span></span></a> /
+      <a href="">{{ ingredient.name }} <span></span></a>
+
+    </div>
+    <div class="custom-select" >
+      <select name="sort" id="sort">
+        {% if sort == "price-inc" %}
+          <option value="{{ request.path }}?sort=price-inc" selected>Price [Low to High]</option>
+          {% else %}
+          <option value="{{ request.path }}?sort=price-inc" >Price [Low to High]</option>
+        {% endif %}
+        {% if sort == "price-dec" %}
+          <option value="{{ request.path }}?sort=price-dec" selected>Price [High to Low]</option>
+          {% else %}
+          <option value="{{ request.path }}?sort=price-dec" >Price [High to Low]</option>
+        {% endif %}
+        {% if sort == "alpha-inc" %}
+          <option value="{{ request.path }}?sort=alpha-inc" selected>A - Z</option>
+          {% else %}
+          <option value="{{ request.path }}?sort=alpha-inc" >A - Z</option>
+        {% endif %}
+        {% if sort == "alpha-dec" %}
+          <option value="{{ request.path }}?sort=alpha-dec" selected>Z - A</option>
+          {% else %}
+          <option value="{{ request.path }}?sort=alpha-dec" >Z - A</option>
+        {% endif %}
+        {% if sort == "new-last" or not sort %}
+          <option value="{{ request.path }}?sort=new-last" selected>Oldest to Newest</option>
+          {% else %}
+          <option value="{{ request.path }}?sort=new-last" >Oldest to Newest</option>
+        {% endif %}
+        {% if sort == "new-first" %}
+          <option value="{{ request.path }}?sort=new-first" selected>Newest to Oldest</option>
+          {% else %}
+          <option value="{{ request.path }}?sort=new-first" >Newest to Oldest</option>
+        {% endif %}
+        {% if sort == "trending" %}
+          <option value="{{ request.path }}?sort=trending" selected>Trending</option>
+          {% else %}
+          <option value="{{ request.path }}?sort=trending" >Trending</option>
+        {% endif %}
+      </select>
+    </div>
+  </div>
+  
+  {% if products.count == 0 %}
+    <div class="no-products">
+      <h1>No products available</h1>
+    </div>  
+  {% endif %}
+    
+    
+  <div class="products-grid">
+    {% for object in products %}
+    <a href="{{ object.get_absolute_url }}">
+      {% if forloop.first %}
+        <div class="head-text">
+          
+          {% if ingredient %}
+            {% for letter in ingredient.name %}
+              <span>{{ letter }}</span>
+            {% endfor %}
+          {% endif %}
+            
+        </div>
+      {% endif %}
+
+      <div class="product-card">
+        <form
+          class="add-to-wishlist"
+          method="POST"
+          action="{% url 'toggle-wishlist-api' %}"
+        >
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{ object.id }}" />
+          <button class="submit-toggle-wishlist" type="submit">
+            {% if object in wishlist_items %}
+            <img
+              class="image-render"
+              src="{% static 'images/wishlist_full.png' %}"
+              alt="Add to wishlist"
+            />
+            {% else %}
+            <img
+              class="image-render"
+              src="{% static 'images/wishlist.png' %}"
+              alt="Add to wishlist"
+            />
+            {% endif %}
+          </button>
+        </form>
+        <img src="{{ object.get_main_image_url }}" alt="Product Image" />
+        <div class="bottom-des">
+          <div class="des">{{ object.title }} &#8209; {{ object.flavour }} </div>
+          <form
+          action="{% url 'cart_update' %}"
+          method="POST"
+          class="product-form" >
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value="{{ object.id }}" />
+          <input type="submit" value="ADD TO CART" />
+        </form>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<script src="{% static 'js/category.js' %}"></script>
+
+{% include 'footer.html' %}

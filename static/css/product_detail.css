@@ -1,0 +1,767 @@
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  overflow-x: hidden;
+}
+
+.product-images {
+  display: -ms-grid;
+  display: grid;
+  width: 57%;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  position: relative;
+  color: #080808;
+}
+
+.capi {
+  text-transform: lowercase;
+}
+
+.capi:first-line,
+.capi:first-letter {
+  text-transform: capitalize;
+}
+
+.nav {
+  position: fixed;
+  top: calc(var(--header-height) + 3.125rem);
+  left: 8.75rem;
+  font: normal normal 500 1.125rem/1.375rem Century Gothic;
+  letter-spacing: 0.27px;
+  text-transform: lowercase;
+  z-index: 2;
+}
+
+.title-flavour {
+  position: absolute;
+  top: 5rem;
+  right: 0;
+  font: normal normal 600 3.75rem/5rem Lato;
+  -webkit-transform: translateX(60%);
+      -ms-transform: translateX(60%);
+          transform: translateX(60%);
+}
+
+.title-flavour span {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 120%);
+      -ms-transform: translate(-50%, 120%);
+          transform: translate(-50%, 120%);
+  font: normal normal 500 1.125rem/2.5rem Lato;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.price-box {
+  position: fixed;
+  top: 30vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  right: 45%;
+  color: #000000;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 16vw;
+  height: 10vw;
+}
+
+.price-box .top,
+.price-box .bottom {
+  height: 3.375rem;
+  border-bottom: 2px solid #000000;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  width: 14.6875rem;
+}
+
+.price-box .top {
+  line-height: 3.375rem;
+  font: normal normal 600 1.875rem/3rem Raleway;
+}
+
+.price-box .top #price {
+  margin: 0 1.25rem 0 0.375rem;
+}
+
+label,
+input[type="radio"] {
+  cursor: pointer;
+}
+
+input[type="radio"][name="qp_id"] {
+  display: none;
+}
+
+input[type="radio"][name="qp_id"] + label.radio-button {
+  display: inline-block;
+  margin: 0 0.5rem;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  border: 0.125rem solid #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+input[type="radio"][name="qp_id"] + label.radio-button .inner-radio {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+input[type="radio"][name="qp_id"]:checked + label.radio-button .inner-radio {
+  background-color: #000;
+}
+
+.buttons-grid {
+  margin-top: 4.6875rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2rem 1fr;
+  grid-template-columns: 1fr 1fr;
+  -webkit-column-gap: 2rem;
+     -moz-column-gap: 2rem;
+          column-gap: 2rem;
+}
+
+.buttons-grid button,
+.buttons-grid a {
+  height: 3.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #fff;
+  color: #080808;
+  font: normal normal normal 0.9375rem/2.5rem Royal Crescent;
+  border: 0.0625rem solid #000000;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.buttons-grid a.shop-now {
+  background-color: #000;
+  color: #fff;
+}
+
+.price-box .top .rupee {
+  font: normal normal 600 1.75rem/3.0625rem Roboto;
+}
+
+.price-box .top .inr {
+  font: normal normal 500 0.875rem/1rem Raleway;
+  letter-spacing: 3.86px;
+}
+
+.price-box .price-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1px 4fr;
+  grid-template-columns: 1fr 1px 4fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.price-box .price-grid div.line {
+  background-color: #000;
+  height: 100%;
+}
+
+.price-box .price-grid div:first-child {
+  font: normal normal 600 0.875rem/1rem Raleway;
+}
+
+.price-box .price-grid .qty-box {
+  font: normal normal 600 1.5rem/2.5rem Raleway;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.price-box .qty-box .inc,
+.price-box .qty-box .dec {
+  cursor: pointer;
+}
+
+.image-box.main_image {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+}
+
+.image-box.image-1 {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+}
+
+.image-box.image-2 {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3/4;
+}
+
+.image-box.image-3 {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3/4;
+}
+
+.image-box.artistic {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4/5;
+}
+
+.image-box img {
+  width: 100%;
+}
+
+.content {
+  width: 43%;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  padding: 0 8.75rem 2rem 5rem;
+}
+
+.content .rating-box {
+  text-align: right;
+  font: normal normal normal 1.25rem/2.5rem Lato;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.content .rating-box .star {
+  width: 1.875rem;
+  height: 1.875rem;
+  margin: 0 0.4375rem;
+  display: inline-block;
+}
+
+.content .rating-box .reviews-num {
+  margin-left: 2.25rem;
+}
+
+.content .description {
+  margin-top: 6.25rem;
+  font: normal normal normal 1.125rem/2.9375rem Raleway;
+}
+
+.content .quantity {
+  margin-top: 5.25rem;
+  font: normal normal bold 1.375rem/2.9375rem Raleway;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.content .quantity input[type="radio"] {
+  margin-right: 1.25rem;
+}
+
+.content .quantity .ali-left {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-left: 2.8125rem;
+}
+
+.content .quantity label {
+  font: normal normal 500 1.375rem/2.9375rem Raleway;
+}
+
+.content .quantity > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.content .quantity > div > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.content {
+  width: 43%;
+  position: fixed;
+  left: 57%;
+  top: 172px;
+}
+
+#reviews {
+  width: 100%;
+  padding: 8.75rem 8.75rem;
+}
+
+.write-review-main h2 {
+  font: normal normal 600 1.5rem/2.5rem Raleway;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.write-review-main label {
+  font: normal normal 500 1.375rem/2.5rem Raleway;
+  letter-spacing: 0px;
+  color: #000000;
+  margin-top: 3rem;
+  display: block;
+}
+
+.write-review-main input:not([type="submit"]),
+.write-review-main textarea {
+  width: 100%;
+  margin-top: 2rem;
+  font: normal normal 500 1.0625rem/2.5rem Raleway;
+  letter-spacing: 0px;
+  color: #505050;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #b1b1b1;
+}
+
+.write-review-main input:focus,
+.write-review-main textarea:focus {
+  outline: none;
+}
+
+.write-review-main .rating-container {
+  cursor: pointer;
+}
+
+.write-review-main .rating-container svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.write-review-main .rating-container svg.filled path {
+  fill: #000;
+}
+
+.write-review-main .submit-button {
+  margin-top: 4.375rem;
+}
+
+.write-review-main .submit-button button {
+  width: 18rem;
+  height: 3.75rem;
+  border: 1px solid #000;
+  background-color: #fff;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font: normal normal normal 0.9375rem/2.5rem Royal Crescent;
+  letter-spacing: 0px;
+  color: #080808;
+  text-transform: uppercase;
+  margin: 0 0 3.75rem auto;
+}
+
+.reviews .reviews-box {
+  border: 1px solid #313131;
+  width: 100%;
+  padding: 2.8125rem 4.125rem;
+}
+
+.reviews .reviews-box h1 {
+  font: normal normal bold 1.875rem/2.5rem Lato;
+  letter-spacing: 0.1669rem;
+  color: #080808;
+  margin-bottom: 0.9375rem;
+}
+
+.reviews .reviews-box .write-review-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.reviews .reviews-box .write-review {
+  font: normal normal 600 1.125rem/2.5rem Lato;
+  letter-spacing: 0.1rem;
+  color: #080808;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.reviews .reviews-box .star {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.reviews .review {
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.reviews .review p.review-des {
+  margin-top: 1.5625rem;
+  font: normal normal 500 1.375rem/2rem Raleway;
+}
+
+.reviews .review p.review-user {
+  font: normal normal 500 1.0625rem/1.5rem Raleway;
+}
+
+.reviews .review form button{
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: block;
+  margin-left: auto;
+  border: none;
+  background-color: #fff;
+  font: normal normal 500 1.0625rem/1.5rem Raleway;
+}
+
+/* Related Products Styling */
+
+.related-products {
+  padding: 1.25rem 8.75rem 10.6875rem;
+}
+
+.related-products h1 {
+  margin-bottom: 4.375rem;
+}
+
+.related-products .products {
+  display: -ms-grid;
+  display: grid;
+  padding: 0 7.5rem;
+  -ms-grid-columns: 1fr 5.25rem 1fr 5.25rem 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  -webkit-column-gap: 5.25rem;
+     -moz-column-gap: 5.25rem;
+          column-gap: 5.25rem;
+}
+
+.related-products .products .product-card {
+  position: relative;
+  overflow: hidden;
+  height: 38.75rem;
+}
+
+.product-card img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transition: height 0.5s ease;
+  -o-transition: height 0.5s ease;
+  transition: height 0.5s ease;
+}
+
+.product-card .add-to-wishlist {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  -webkit-transform: translateY(calc(-125% + -20px));
+      -ms-transform: translateY(calc(-125% + -20px));
+          transform: translateY(calc(-125% + -20px));
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
+.product-card .add-to-wishlist button {
+  border: none;
+  background-color: transparent;
+  width: 2.1875rem;
+}
+
+.product-card .add-to-wishlist button:focus {
+  outline: none;
+}
+
+.product-card .add-to-wishlist img {
+  width: 100%;
+}
+
+.product-card .product-form input[type="submit"] {
+  color: #fff;
+  text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  text-align: center;
+  border: none;
+  font: normal normal 500 1.125rem/4.375rem Royal Crescent;
+}
+
+.product-card .bottom-des .des {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.17);
+  font-size: 1.375rem;
+  line-height:4.375rem;
+  text-transform: uppercase;
+  padding: 0 1rem;
+  color: #fff;
+  text-align: center;
+  text-overflow: ellipsis;
+  width: calc(100%);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.product-card .bottom-des .des::before {
+  content: "";
+  width: 80%;
+  background-color: #fff;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 0.125rem;
+}
+
+.product-card:hover .add-to-wishlist {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.product-card:hover img {
+  height: calc(100% - 40px);
+}
+
+.bottom-des {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  -webkit-transform: translateY(50%);
+      -ms-transform: translateY(50%);
+          transform: translateY(50%);
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
+.product-card:hover .bottom-des {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+
+
+@media screen and (max-width: 600px){
+
+  .nav{
+    left: 2rem;
+    top: calc(var(--header-height) + 2rem);
+  }
+
+  .product-images{
+    width: 50%;
+  }
+
+  .price-box{
+    right: 52%;
+    top: 43vw;
+    width: 20vw;
+    height: 15vw;
+  }
+
+  .price-box .top .rupee {
+    font: normal normal 600 1.25rem/3.0625rem Roboto;
+  }
+
+  .price-box .top{
+    font: normal normal 500 1.25rem/1.625rem Raleway;
+  }
+
+  .price-box .top .price{
+    font: normal normal 500 1.5rem/1.625rem Raleway;
+  }
+
+  .price-box .price-grid .qty-box{
+    font: normal normal 500 1.25rem/1.625rem Raleway;
+  }
+
+  .price-box .top, .price-box .bottom{
+    width: 14vw;
+    border-bottom: 1px solid #000000;
+  }
+
+  .price-box .bottom{
+    height: 4vw;
+  }
+
+  .price-box .top #price {
+    margin: 0 .5rem 0 0.375rem;
+  }
+
+  .price-box .top .inr {
+    letter-spacing: 2px;
+  } 
+
+  .content {
+    left: 50%;
+    width: 50%;
+    padding: 0 2rem 2rem 1rem;
+  }
+
+  .content .rating-box .reviews-num {
+    margin-left: .5rem;
+  }
+
+  .content .rating-box .star {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .content .description {
+    margin-top: 3.5rem;
+    font :normal normal normal 1.625rem/2.0375rem Raleway;
+  }
+
+  .buttons-grid{
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    width: 75%;
+    margin: 2rem auto;
+  }
+
+  #reviews{
+    padding: 8.75rem 5vw;
+  }
+
+  .related-products {
+    padding: 1.25rem 5vw 10.6875rem;
+  }
+
+  .related-products .products{
+    padding: 0;
+    -webkit-column-gap: 5vw;
+       -moz-column-gap: 5vw;
+            column-gap: 5vw;
+  }
+}
+
+@media screen and (max-width:500px) {
+
+  .content .quantity {
+    margin-top:2rem;
+  }
+
+  .content .description {
+    margin-top: 3.5rem;
+    font: normal normal normal 1.325rem/1.7375rem Raleway;
+  }
+
+  .buttons-grid button, .buttons-grid a{
+    height: 2.8rem;
+  }
+}
+
+
+@media screen and (max-width:450px) {
+  .content .description {
+    margin-top: 3.5rem;
+    font: normal normal normal 3vw/4vw Raleway;
+  }
+}

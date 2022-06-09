@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holyherb</title>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'images/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="{% static 'css/orders.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="heading">Your Orders</h1>
+    {% if logged_in %}
+        <div class="container">
+            {% if orders %}
+                <div class="main-grid-head color-light">
+                    <div class="grid-head">Product</div>
+                    <div class="grid-head">Date & Time</div>
+                    <div class="grid-head">Status</div>
+                    <div class="grid-head" style="text-align:center">Quantity</div>
+                    <div class="grid-head" style="text-align:right">Price</div>
+                </div>
+            {% else %}
+                <h1 class="login_show">You have no Orders</h1>
+            {% endif %}
+                
+            {% for order in orders %}
+            {% for cartitem in order.cart.items.all %}
+                <div class="main-grid color-dark">
+                    <div class="grid-item">
+                        <div class="product-holder">
+                            <img src="{{ cartitem.product.get_main_image_url }}" alt="Product-Image">
+                            <span>{{ cartitem.product.title }}</span>
+                        </div>
+                    </div>
+                    <div class="grid-item item-date">
+                        {{ order.timestamp|date:"d/m/y  H:i" }}
+                    </div>
+                    <div class="grid-item item-status">
+                        {% if order.status == "paid" %}
+                            In transit
+                        {% elif order.status == "shipped" %}
+                            Order Shipped
+                        {% elif order.status == "refunded" %}
+                            Refunded
+                        {% endif %}
+                    </div>
+                    <div class="grid-item item-quanity">{{ cartitem.quantity }}</div>
+                    <div class="grid-item item-price"><span class="rupee">₹</span>{{ cartitem.price }}</div>
+                </div>
+            {% endfor %}
+            <div class="main-grid">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="total-price">Total Price</div>
+                <div class="price color-dark"><span class="rupee">₹</span>{{ order.total }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+    <h1 class="login_show">Login to view your Orders</h1>
+    {% endif %}
+    
+    <a class="mail-link" href="mailto:care@holyherb.com">Have a concern, complaint or a suggestion? Mail us at <i>care@holyherb.com</i></a>
+</body>
+</html>

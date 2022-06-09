@@ -1,0 +1,62 @@
+{% load static %}
+
+
+<section class="contact" id="contact">
+  <div class="contact-main">
+    <div>
+      <div class="contact-text">
+        <h1 class="head-one" >Join Our</h1>
+        <p>
+          Be a part of our regular newsletters and updates through emails. We will
+          keep you updated with the latest collections and exciting offers!
+        </p>
+      </div>
+      <div class="contact-text">
+        <h1 class="head-two" style="transform: translate(75px, -15px);">Circle now</h1>
+      </div>
+  
+      <form action="/api/joincircle/" method="POST" class="join-our-circle-form">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="YOUR EMAIL" autocomplete="off" required/>
+        <div><input type="submit" value="&rarr;" /></div>
+      </form>
+    </div>
+
+    <p class="mobile-show" style="background-color: rgba(255,255,255,0.6);">
+      Be a part of our regular newsletters and updates through emails. We will
+      keep you updated with the latest collections and exciting offers!
+    </p>
+  </div>
+  <div class="footer">
+    <h1>Follow us!</h1>
+    <h3>Want to be the first one to know?</h3>
+    <div>
+      <div class="contact_links">
+        <a href="https://instagram.com/holyherbindia?igshid=1minivec19e0w" rel="noreferrer" target="_blank">Instagram <span></span></a>
+        <a href="https://www.facebook.com/HolyHerbIndia/" rel="noreferrer" target="_blank">Facebook <span></span></a>
+        <a href="https://youtube.com/channel/UCVpn_pea-KrpVbleKZPB6VA" rel="noreferrer" target="_blank">Youtube <span></span></a>
+        <a href=" https://pin.it/6ZaQdOu" rel="noreferrer" >Pinterest <span></span></a>
+      </div>
+      <div class="other_links">
+        <a href="{% url 'ii_home' %}">Ingrideints index <span></span></a>
+        <a href="{% url 'faq' %}" target="blank">FAQ <span></span></a>
+        <a href="https://www.shiprocket.in/shipment-tracking/" rel="noreferrer" target="blank">Shipping <span></span></a>
+        <a href="/termsandconditions" target="blank">Return & refund policy <span></span></a>
+        <a href="/privacypolicy" target="blank">Privacy policy <span></span></a>
+      </div>
+    </div>
+    <a class="credits" href="https://www.iambharatsingh.com/" target="_blank" >Designed and developed by Bharat©</a>
+  </div>
+</section>
+  
+
+<!-- JS Cookies -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
+<!-- Django secure ajax  -->
+<script src=" {% static 'js/csrf.ajax.js' %} "></script>
+
+<!-- JQuery Confirm plugin for custom alerts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+</body>
+</html>

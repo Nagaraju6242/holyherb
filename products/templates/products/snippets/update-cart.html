@@ -1,0 +1,18 @@
+<form
+  method="POST"
+  action="{% url 'cart_update' %}"
+  data-endpoint="{% url 'cart_update' %}"
+  class="form-product-ajax"
+>
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value="{{ product.id }}" />
+
+  {% for qp_item in product.quantity_price.all %}
+      <label for="qp-{{ product.id }}-{{ qp_item.id }}">{{ qp_item.quantity }}{{ qp_item.quantity_type }}</label>
+      <input type="radio" id="qp-{{ product.id }}-{{ qp_item.id }}" class="qp_update" name="qp_id" value="{{ qp_item.id }}" --data-price={{ qp_item.price }} required>
+  {% endfor %}
+  <p class="price">Select any one Option</p>
+  <span class="submit-span">
+    <button type="submit" class="btn btn-success">Add to Cart</button>
+  </span>
+</form>

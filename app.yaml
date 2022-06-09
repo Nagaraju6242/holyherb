@@ -1,0 +1,8 @@
+runtime: python39
+
+entrypoint: gunicorn -b :$PORT holyherb.wsgi
+
+handlers:
+
+- url: /.*
+  script: auto

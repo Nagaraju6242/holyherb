@@ -1,0 +1,774 @@
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{ google_tag_manager }}');</script>
+    <!-- End Google Tag Manager -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <meta name="description" content="We at “Holy Herb” aim on making products which are skin friendly, which are free from all these harmful chemicals and artificial colours and fragrances , restoring the age old methods of skin care using oils, essential oils, and natural ingredients.">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap&family=Raleway"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/new_header.css' %}" />
+    <title>Holy Herb</title>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'images/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#e8eedd">
+    <meta name="theme-color" content="#227c26">
+    <style>
+      :root{
+        --sample-png : url({% static 'images/about-us-image.jpg' %});
+        --contact-background-jpeg : url({% static 'images/contact-background.jpeg' %});
+        --contact-jpg : url({% static 'images/contact.jpg' %});
+        --drag-cursor-png : url({% static 'images/drag_cursor.png' %})
+      }
+    </style>
+
+    <!-- Facebook Pixel Code -->
+      <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '{{ fb_pixel }}');
+      fbq('track', 'PageView');
+      </script>
+      <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id={{ fb_pixel }}&ev=PageView&noscript=1"
+      /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCRNWDD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script>
+      jQuery.event.special.touchstart = {
+        setup: function( _, ns, handle ){
+            this.addEventListener("touchstart", handle, { passive: true });
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script src="{% static 'js/header.js' %}" defer></script>
+    <script>
+      js_urls = {
+        logo : "{% static 'images/logo.png' %}",
+        leaf : "{% static 'images/leaf.png' %}",
+        short_logo : "{% static 'images/short_logo.png' %}",
+        mixed_logo : "{% static 'images/mixed-logo.svg' %}",
+        wishlist : "{% static 'images/wishlist-2.png' %}",
+        wishlist_full : "{% static 'images/wishlist_full.png' %}",
+        cart : "{% static 'images/cart.png' %}",
+        cart_full : "{% static 'images/cart_full.png' %}",
+        sample : "{% static 'images/about-us-image.jpg' %}",
+        sample_2 : "{% static 'images/about-us-bg.png' %}",
+        api_length : "{% url 'get_cart_wishlist_api' %}",
+        cart_home : "{% url 'cart_home' %}",
+        api_wishlist : "{% url 'api-wishlist' %}",
+        logged_in : "{{ request.user.is_authenticated }}"
+      }
+    </script>
+    <div class="header">
+          <div class="header_left">
+            <div class="about-link flex-center">
+              <a href="/about"><div>ABOUT<span></span></div></a>
+            </div>
+            <div class="contact-link flex-center">
+              <a href="/contact"><div>CONTACT<span></span></div></a>
+            </div>
+            <div class="hair-link cat-link">
+              <a href="/category/haircare/" class="flex-center"><div>HAIR<span></span></div></a>
+              <div class="dropdown hair-dropdown">
+                <div class="mega-menu">
+                  <div class="trending">
+                    <p><strong><a href="/category/haircare?sort=trending">Trending<span></span></a></strong></p>
+                    {% for x in hair_trending %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.title }} {{ x.flavour }} <span></span></a>
+                    {% endfor %}
+                  </div>
+                  <div class="mega-items">
+                    <div>
+                      <a class="" href="/category/haircare/hair-cleanser/"><strong>Hair Cleansers</strong><span></span></a>
+                      {% for x in hair_cleanser %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                    </div>
+                    <div>
+                      <a class="" href="/category/haircare/hair-conditioner/"><strong>Hair Conditioners</strong><span></span></a>
+                      {% for x in hair_conditioner %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="accessories">
+                    <p><strong><a href="">Accessories<span></span></a></strong></p>
+                  </div>  
+                </div>
+              </div>
+            </div>
+            <div class="face-link cat-link">
+              <a href="/category/facecare/" class="flex-center"><div>FACE<span></span></div></a>
+              <div class="dropdown face-dropdown">
+                <div class="mega-menu">
+                  <div class="trending">
+                    <p><strong><a href="/category/facecare?sort=trending">Trending<span></span></a></strong></p>
+                    {% for x in face_trending %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.title }} {{ x.flavour }} <span></span></a>
+                    {% endfor %}
+                  </div>
+                  <div class="mega-items">
+                    <div>
+                      <a class="" href="/category/facecare/face-cleanser/"><strong>Face Cleansers</strong><span></span></a>
+                      {% for x in face_cleanser %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                      <a class="" href="/category/facecare/face-mist/"><strong>Face Mist</strong><span></span></a>
+                      {% for x in face_mist %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                    </div>
+                    <div>
+                      <a class="" href="/category/facecare/face-scrub/"><strong>Face Scrub</strong><span></span></a>
+                      {% for x in face_scrub %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                      <a class="" href="/category/facecare/peel-off-gel-facepack/"><strong>Peel Off Gel Mask</strong><span></span></a>
+                      {% for x in peel_off_gel_facepack %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                    </div>
+                    <div>
+                      <a class="" href="/category/facecare/face-clay-mask/"><strong>Face Clay Mask</strong><span></span></a>
+                      {% for x in face_clay_mask %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                      <a class="" href="/category/facecare/face-pack/"><strong>Face Pack</strong><span></span></a>
+                      {% for x in face_pack %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                      <a class="" href="/category/facecare/lip-balm/"><strong>Lip Balm</strong><span></span></a>
+                      {% for x in lip_balm %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="accessories">
+                    <p><strong><a href="">Accessories<span></span></a></strong></p>
+                  </div>  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hamburger">
+            <img onclick="toggleNav()" src="{% static 'images/hamburger.svg' %}" alt="Toggle Navigation">
+          </div>
+          <div class="header_logo">
+            <div class="">
+              <a href="/"
+                ><img
+                  src="{% static 'images/logo.png' %}"
+                  alt="Logo"
+                  class="logo_img image-render"
+              /></a>
+            </div>
+          </div>
+          <div class="header_right">
+            <div class="body-link cat-link">
+              <a href="/category/bodycare/" class="flex-center"><div>BODY<span></span></div></a>
+              <div class="dropdown body-dropdown">
+                <div class="mega-menu">
+                  <div class="trending">
+                    <p><strong><a href="/category/bodycare?sort=trending">Trending<span></span></a></strong></p>
+                    {% for x in body_trending %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.title }} {{ x.flavour }} <span></span></a>
+                    {% endfor %}
+                  </div>
+                  <div class="mega-items">
+                    <div>
+                      <a class="" href="/category/bodycare/essential-oil/"><strong>Essential oils</strong><span></span></a>
+                      {% for x in essential_oil %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                      <a class="" href="/category/bodycare/body-wash/"><strong>Body Wash</strong><span></span></a>
+                      {% for x in body_wash %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                    </div>
+                    <div>
+                      <a class="" href="/category/bodycare/bath-salt/"><strong>Bath Salt</strong><span></span></a>
+                      {% for x in bath_salt %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                      <a class="" href="/category/bodycare/body-moisturiser/"><strong>Body Moisturiser</strong><span></span></a>
+                      {% for x in body_moisturiser %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                    </div>
+                    <div>
+                      <a class="" href="/category/bodycare/vegetable-soap/"><strong>Vegetable Soap</strong><span></span></a>
+                      {% for x in vegetable_soap %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                      <a class="" href="/category/bodycare/hand-wash/"><strong>Hand Wash</strong><span></span></a>
+                      {% for x in hand_wash %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                    </div>
+                    <div>
+                      <a class="" href="/category/bodycare/butter-soap/"><strong>Butter Soap</strong><span></span></a>
+                      {% for x in butter_soap %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                      <a class="" href="/category/bodycare/massage-oil/"><strong>Massage Oil</strong><span></span></a>
+                      {% for x in massage_oil %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                    </div>
+                    <div>
+                      <a class="" href="/category/bodycare/glycerine-soap/"><strong>Glycerine Soap</strong><span></span></a>
+                      {% for x in glycerine_soap %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                      <a class="" href="/category/bodycare/sanitiser/"><strong>Sanitiser</strong><span></span></a>
+                      {% for x in sanitiser %}
+                      <a href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="accessories">
+                    <p><strong><a href="">Accessories<span></span></a></strong></p>
+                  </div>  
+                </div>
+              </div>
+            </div>
+            <div class="feet-link cat-link">
+              <a href="/category/gifting/"class="flex-center"><div>GIFTS & HAMPERS <span></span></div></a>
+            </div>
+            <div class="header_icons">
+              <div href="{% url 'profile' %}" class="profile-icon" onclick="profile(event)" >
+                <div class="profile-dropdown">
+                    <p>Welcome <strong>{{ request.user.name }}</strong> <br />
+                    <small>+91-{{ request.user.number }}</small></p>
+                  <hr />
+                    <p><a href="{% url 'orders_home' %}">Orders<span></span></a></p>
+                    <p><a href="javascript:void(0)" onclick="openWishlist()">Wishlist<span></span></a></p>
+                    <p><a rel="noopener noreferrer" href="https://www.shiprocket.in/shipment-tracking/" target="_blank">Track Order<span></span></a></p>
+                    <p><a href="{% url 'contact' %}" >Customer Care<span></span></a></p>
+                  <hr />
+                    <p><a href="{% url 'coupons' %}">Coupons<span></span></a></p>
+                  <hr />
+                    <p><a onclick="$('#editProfileModal').modal('show');">Edit Profile<span></span></a></p>
+                    <p>
+                      <form action="{% url 'logout' %}" method="POST" >
+                        {% csrf_token %}
+                        <a onclick="this.parentNode.submit();">Logout<span></span></a>
+                      </form>
+                    </p>
+                </div>
+                <img class="image-render" src="{% static 'images/profile.png' %}" alt="Icons"/>
+              </div>
+              <a href="javascript:void(0)" class="wishlist-logo"
+                ><img class="image-render" src="{% static 'images/wishlist-2.png' %}" alt="Icons"
+              /></a>
+              <a href="{% url 'cart_home' %}" class="cart_home_button"
+                ><img class="image-render" src="{% static 'images/cart.png' %}" alt="Icons"
+              />
+              <div class="cart-number"></div>
+            </a>
+            </div>
+            <div class="search_box">
+              <form
+                action="{% url 'search' %}"
+                method="GET"
+                class="search-form"
+              >
+                <input
+                  type="text"
+                  name="q"
+                  placeholder="Search Here"
+                  autocomplete="off"
+                  class="search_input"
+                  value="{{ request.GET.q }}"
+                />
+                <img
+                  src="{% static 'images/search.png' %}"
+                  class="search_submit image-render"
+                  onclick="submit_form()"
+                  aria-autocomplete="off"
+                  alt="Search"
+                />
+              </form>
+            </div>
+          </div>
+      
+    <!-- DropDowns  -->
+
+
+    </div>
+    <!-- Header Close -->
+
+    <!-- Mobile Navigation Starts  -->
+    <div class="mobile-nav">
+      <div class="close" onclick="toggleNav()" >×</div>
+      <div class="nav-main">
+        <div class="head">
+          <div class="logo-holder">
+            <img class="image-render" src="{% static 'images/logo.png' %}" alt="Holyherb">
+          </div>
+          <div class="welcome-text">
+            {% if request.user.is_authenticated %}
+              <h3>Welcome {{ request.user.name }} </h3>
+            {% else %}
+              <h3>Welcome Guest</h3>
+              <br>
+              <a onclick="profile(event)" href="javascript:void(0)">Login</a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="nav-dds">
+
+          <div class="dd-link">
+            <div class="link">
+              <a href="/about/">About</a>
+            </div>
+          </div>
+          <div class="dd-link">
+            <div class="link">
+              <a href="/contact/">Contact</a>
+            </div>
+          </div>
+
+          <div class="dd-link link-hair" id="link-hair">
+            <div class="link">
+              <a href="/category/haircare/">Hair</a>
+              <div onclick="opendd('link-hair')"><div class="down-arrow"></div></div>
+            </div>
+            <div class="collap-links">
+              <a class="cate" href="/category/haircare/hair-cleanser/"><strong>Hair Cleansers</strong><span></span></a>
+              {% for x in hair_cleanser %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+              <a class="cate" href="/category/haircare/hair-conditioner/"><strong>Hair Conditioners</strong><span></span></a>
+              {% for x in hair_conditioner %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="dd-link link-face" id="link-face">
+            <div class="link">
+              <a href="/category/facecare/">Face</a>
+              <div onclick="opendd('link-face')"><div class="down-arrow"></div></div>
+            </div>
+            <div class="collap-links">
+
+              <a class="cate" href="/category/facecare/face-cleanser/"><strong>Face Cleansers</strong><span></span></a>
+              {% for x in face_cleanser %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+              <a class="cate" href="/category/facecare/face-mist/"><strong>Face Mist</strong><span></span></a>
+              {% for x in face_mist %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+              <a class="cate" href="/category/facecare/face-scrub/"><strong>Face Scrub</strong><span></span></a>
+              {% for x in face_scrub %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+              <a class="cate" href="/category/facecare/peel-off-gel-facepack/"><strong>Peel Off Gel Mask</strong><span></span></a>
+              {% for x in peel_off_gel_facepack %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+              
+              <a class="cate" href="/category/facecare/face-clay-mask/"><strong>Face Clay Mask</strong><span></span></a>
+              {% for x in face_clay_mask %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+              <a class="cate" href="/category/facecare/face-pack/"><strong>Face Pack</strong><span></span></a>
+              {% for x in face_pack %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+              <a class="cate" href="/category/facecare/lip-balm/"><strong>Lip Balm</strong><span></span></a>
+              {% for x in lip_balm %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="dd-link link-body" id="link-body">
+            <div class="link">
+              <a href="/category/bodycare/">Body</a>
+              <div onclick="opendd('link-body')"><div class="down-arrow"></div></div>
+            </div>
+            <div class="collap-links">
+              
+              <a class="cate"  href="/category/bodycare/essential-oil/"><strong>Essential oils</strong><span></span></a>
+              {% for x in essential_oil %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+              <a class="cate"  href="/category/bodycare/body-wash/"><strong>Body Wash</strong><span></span></a>
+              {% for x in body_wash %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+              <a class="cate"  href="/category/bodycare/bath-salt/"><strong>Bath Salt</strong><span></span></a>
+              {% for x in bath_salt %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+              <a class="cate"  href="/category/bodycare/body-moisturiser/"><strong>Body Moisturiser</strong><span></span></a>
+              {% for x in body_moisturiser %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+              <a class="cate"  href="/category/bodycare/vegetable-soap/"><strong>Vegetable Soap</strong><span></span></a>
+              {% for x in vegetable_soap %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+              <a class="cate"  href="/category/bodycare/hand-wash/"><strong>Hand Wash</strong><span></span></a>
+              {% for x in hand_wash %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+              <a class="cate"  href="/category/bodycare/butter-soap/"><strong>Butter Soap</strong><span></span></a>
+              {% for x in butter_soap %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+              <a class="cate"  href="/category/bodycare/massage-oil/"><strong>Massage Oil</strong><span></span></a>
+              {% for x in massage_oil %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+              <a class="cate"  href="/category/bodycare/glycerine-soap/"><strong>Glycerine Soap</strong><span></span></a>
+              {% for x in glycerine_soap %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+              <a class="cate"  href="/category/bodycare/sanitiser/"><strong>Sanitiser</strong><span></span></a>
+              {% for x in sanitiser %}
+                <a class="prod" href="{{ x.get_absolute_url }}">{{ x.flavour }}<span></span></a>
+              {% endfor %}
+
+            </div>
+          </div>
+          <div class="dd-link">
+            <div class="link">
+              <a href="/category/gifting/">Gifts & Hampers</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Navigation Ends  -->
+
+    <div
+      class="modal fade hide"
+      id="mymodal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal" role="document">
+        <div class="modal-content login_popup">
+          <p class="close" onclick="$('#mymodal').modal('hide');if (window.location.pathname === '/') resumeAnimation();">&times;</p>
+          <div class="img_box">
+            <img
+            src="{% static 'images/logo.svg' %}"
+            class="logo_img_popup"
+            alt="Holyherb Logo"
+          /></div>
+          <div class="login_page">
+            <form
+              action="{% url 'login' %}"
+              class="login_popup_form"
+              method="POST"
+            >
+              {% csrf_token %}
+              <h3>Login</h3>
+              <span class="text-danger errors"></span>
+              <label for="email"
+                >Enter your Email ID <span class="text-danger">*</span></label
+              ><br />
+              <input type="text" name="username" class="email" required />
+              <label for="password"
+                >Password <span class="text-danger">*</span></label
+              >
+              <input
+                type="password"
+                name="password"
+                class="password"
+                required
+              />
+              <small style="display: none">Invalid email or password</small>
+              <input type="submit" value="Continue" class="submit-button" />
+            </form>
+            <p class="text-strike"><span>OR</span></p>
+            <h4>Login with</h4>
+            <div class="scoial_login">
+              <a class="google_login" href="{% provider_login_url 'google' %}"
+                >Google
+                <img src="{% static 'images/google.png' %}" alt="Google"
+              /></a>
+              <a class="facebook_login" href="{% provider_login_url 'facebook' method='js_sdk' %}"
+                >facebook
+                <img src="{% static 'images/facebook.png' %}" alt="Facebook"
+              /></a>
+            </div>
+            <p class="new_register" onclick="showRegister()">
+              New to HolyHerb? <u> Create an account</u>
+            </p>
+          </div>
+          <div class="register_page" style="display: none">
+            <form action="/allauth/signup/" method="POST" id="register-user-form">
+              {% csrf_token %}
+              <h3>Create an account</h3>
+              <span class="text-danger errors"></span>
+              <br />
+              <label for="name">Name <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Write full name"
+                required
+              />
+              <span class="name-error text-danger"></span>
+              <label for="number"
+                >Phone Number <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                name="number"
+                placeholder="Example 9999999999"
+                required
+              />
+              <span class="number-error text-danger"></span>
+              <label for="email"
+                >Email ID <span class="text-danger">*</span></label
+              >
+              <input
+                type="email"
+                name="email"
+                placeholder="Write email address"
+                required
+              />
+              <span class="email-error text-danger"></span>
+              <label for="password"
+                >Password <span class="text-danger">*</span></label
+              >
+              <input
+                type="password"
+                name="password1"
+                placeholder="Atleast 8 Characters"
+                required
+              />
+              <span class="password1-error text-danger"></span>
+              <label for="password2"
+                >Confirm Password <span class="text-danger">*</span></label
+              >
+              <input
+                type="password"
+                name="password2"
+                placeholder="Re-type Password"
+                required
+              />
+              <span class="password2-error text-danger"></span>
+              <input type="submit" value="Continue" class="submit-button" />
+            </form>
+            <p class="old_login" onclick="showLogin()">
+              Already a User <u>Login Here</u>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    {% if request.user.is_authenticated %}
+      <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="Edit Profile Modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal" role="document">
+          <div class="modal-content login_popup">
+            <p class="close" onclick="$('#editProfileModal').modal('hide');">&times;</p>
+            <div class="img_box">
+              <img
+              src="{% static 'images/logo.svg' %}"
+              class="logo_img_popup"
+              alt="Logo"
+            /></div>
+            <div class="register_page">
+              <form action="{% url 'update-profile' %}" method="POST" id="edit-profile-form">
+                {% csrf_token %}
+                <h3>Edit Profile</h3>
+                <small class="errors" style="color:red;" ></small>
+                <span class="text-danger errors"></span>
+                <br />
+                <label for="name">New Name <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Write full name"
+                />
+                <label for="number"
+                  >Phone Number <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  name="number"
+                  placeholder="Example 9999999999"
+                />
+                <label for="password"
+                  >Old Password <span class="text-danger">*</span></label
+                >
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Old Password"
+                />
+                <label for="password2"
+                  >New Password <span class="text-danger">*</span></label
+                >
+                <input
+                  type="password"
+                  name="password2"
+                  placeholder="Atleast 8 Characters"
+                />
+                <input type="submit" value="Continue" class="submit-button" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+      
+
+    <div class="wishlist_slide_page">
+      <div class="right_slide">
+        <div class="slide-loader">
+          <img src="{% static 'images/loading-spinner.svg' %}" alt="Loading" draggable="false">
+        </div>
+        <div class="empty_wishlist" style="display: none">Empty</div>
+        <a class="close_slide_wishlist">&#x58;</a>
+        <div class="cart_head_slide">
+          <img src="{% static 'images/wishlist.png' %}" alt="Wishlist" />
+          <h2>Your wishlist</h2>
+        </div>
+        <div class="slide_main_heading_wishlist">
+          <div class="heading_product_wishlist">Product</div>
+          <div class="heading_price_price">Price</div>
+        </div>
+        <hr class="wishlist_main_hr" style="margin: 0.5rem 3.75rem 1rem 4rem;" />
+        <div class="wishlist_slide_main"></div>
+        <div class="continue_shopping_wishlist btn-effect" style="z-index:1;">Continue Shopping</div>
+        <div class="wishlist_slide_item hidden" style="display: none">
+          <img src="" alt="Dummy Image" />
+          <div class="wishlist_item_title"></div>
+          <div class="wishlist_item_price"></div>
+          <form action="/api/wishlist/remove/" class="wishlist_item_delete">
+            <input type="hidden" class="remove_form_id" name="id" value="" />
+            <input type="submit" name="submit" value="Delete" />
+          </form>
+          <form action="/api/wishlist/move/" class="wishlist_item_movecart">
+            <input type="hidden" class="move_form_id" name="id" value="" />
+            <input type="submit" name="submit" value="Move to cart" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart_slide_page">
+      <div class="right_slide">
+        <div class="slide-loader">
+          <img src="{% static 'images/loading-spinner.svg' %}" alt="Loading" draggable="false">
+        </div>
+        <div class="empty_cart">Empty</div>
+        <a class="close_slide">&#x58;</a>
+        <div class="cart_head_slide">
+          <a href="" class="">
+            <img src="{% static 'images/cart.png' %}" alt="Cart" />
+            <div class="cart-number"></div>
+          </a>
+
+          <h2>Your cart</h2>
+        </div>
+        <div class="slide_main_heading">
+          <div class="heading_product">Product</div>
+          <div class="heading_quantity">Qunatity</div>
+          <div class="heading_price">Price</div>
+        </div>
+        <hr style="margin: 0 3.75rem" class="slide_main_hr" />
+        <div class="cart_slide_main"></div>
+        <form
+          action="{% url 'update_quantity' %}"
+          method="POST"
+          class="update_quantity_form_jquery hidden"
+          style="display: none"
+        >
+          {% csrf_token %}
+          <input type="hidden" name="inc_or_dec" class="inc_or_dec" value="" />
+          <input type="hidden" name="item_id" class="hidden-item-id" value="" />
+          <input type="submit" class="submit-hidden" value="" />
+        </form>
+        <div class="cart_slide_item hidden" style="display: none">
+          <div class="item-id-hidden" style="display: none"></div>
+          <img src="" alt="Dummy" />
+          <div class="slide_item_title"></div>
+          <div class="slide_item_quantity"></div>
+          <div class="slide_item_price"></div>
+        </div>
+        <div class="cart_slide_price">
+          <div>Total Price</div>
+          <div class="cart_slide_total"></div>
+        </div>
+        <div class="cart_slide_buttons">
+          <div class="continue_button btn-effect">Continue Shopping</div>
+          <a href="/cart/checkout/" class="track-checkout checkout_button btn-effect">Checkout</a>
+        </div>
+      </div>
+    </div>
+    <div class="left_anim"></div>
+    <script>
+      var csrftoken = '{{ csrf_token }}';
+    </script>

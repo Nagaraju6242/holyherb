@@ -1,0 +1,214 @@
+{% load static %} {% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/new_home.css' %}">
+<link rel="stylesheet" href="{% static 'splide/splide-core.min.css' %}">
+
+<script src="{% static 'splide/splide.min.js' %}"></script>
+
+<div class="loading-animation">
+  <div class="lds-ring">
+    <img src="{% static 'images/logo.svg' %}" alt="Logo">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+
+{% if homepagebanner %}
+  <div class="modal fade" id="offerBannerModal" tabindex="-1" role="dialog" aria-labelledby="Offer Banner Modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width:100%"  role="document">
+      <div class="modal-content">
+        <div class="close" onclick="closeOfferBanner()" ><svg fill="{{ homepagebanner.closemark_color }}" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></div>
+        <img src="{{ homepagebanner.image.url }}" alt="Offer Banner">
+        <div class="offer-des">{{ homepagebanner.text }}</div>
+        <a href="{{ homepagebanner.link }}" class="shop-now">SHOP NOW</a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  
+
+
+<div id="main" class="main-carousel">
+    <div class="splide" id="herobannersplide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          {% for x in herobanners %}
+            <li class="splide__slide"><div class="main-carousel-item"> <img  src="{{ x.image.url }}" alt="{{ x.main_heading }}"> <div class="item-content"><h1>{{ x.main_heading }}</h1><p>{{ x.side_heading }}</p></div></div></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  <div class="navigation">
+    <div class="prev">
+      <span></span>
+      <svg width="44" height="14" viewBox="0 0 44 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0.982147" y1="13.5" x2="43.9821" y2="13.5" stroke="#8B8B8B"/>
+        <line x1="1.64645" y1="13.1317" x2="13.639" y2="1.13921" stroke="#8B8B8B"/>
+        </svg>        
+    </div>
+    <div class="next active">
+      <span></span>
+      <svg width="44" height="13" viewBox="0 0 44 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0.982147" y1="12.5" x2="43.9821" y2="12.5" stroke="#8B8B8B"/>
+        <line x1="43.639" y1="12.3461" x2="31.6465" y2="0.353576" stroke="#8B8B8B"/>
+        </svg>        
+    </div>
+  </div>
+  <div class="locate-lines">
+    {% for temp in herobanners %}
+      <div class="line" onclick="changeSlide('{{ forloop.counter }}')">
+        <div class="inner-line"></div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<section class="neem">
+  <div class="descrip font-content">
+    <div class="des-title">{{ recipe.title }}</div>
+    {{ recipe.description }}
+  </div>
+  <div class="video-holder">
+    <div class="button-holder">
+      <button class='play-or-pause'></button>
+    </div>
+    <video class="demo-video" muted>
+      <source src="{{ recipe.video.url }}" type="video/mp4">
+      Your browser does not support the video.
+    </video>
+  </div>
+  <div class="neem_img_box">
+    <span>{{ recipe.title }}</span>
+    <img class="neem_img" src="{{ recipe.small_image.url }}" alt="" />
+  </div>
+</section>
+
+<section class="products">
+  <h1 class="mobile-show">Choose from our Handpicked</h1>
+  <div class="choose">
+    <h1>Choose <br> from <br> our Handpicked</h1>
+    <p class="font-content">
+      Choose from our thoughtfully handpicked essentials, curated using authentic, organic formulations with an amalgam of active ingredients along with Essential oils, which are parabens and sulphate free, that targets and tend to help you omit your everyday head to toe beauty woes.
+    </p>
+    <a class="btn-effect" href="{% url 'handpicked' %}">SHOP NOW</a>
+  </div>
+  <div class="products_scroll">
+    <div class="splide" id="products-splide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          {% for handpick in handpicked  %}
+            <li class="splide__slide">
+              <div class="products_scroll_div"> <a href="{{ handpick.product.get_absolute_url }}"><img data-splide-lazy="{{ handpick.image.url }}" alt="" /></a> </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="scroll_buttons">
+      <button class="left" onclick="left_scroll()">
+        <svg width="44" height="14" viewBox="0 0 44 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0.982147" y1="13.5" x2="43.9821" y2="13.5" stroke="#8B8B8B"/>
+          <line x1="1.64645" y1="13.1317" x2="13.639" y2="1.13921" stroke="#8B8B8B"/>
+        </svg>  
+      </button>
+      <button class="right" onclick="right_scroll()">
+        <svg width="44" height="13" viewBox="0 0 44 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0.982147" y1="12.5" x2="43.9821" y2="12.5" stroke="#8B8B8B"/>
+          <line x1="43.639" y1="12.3461" x2="31.6465" y2="0.353576" stroke="#8B8B8B"/>
+        </svg> 
+      </button>
+    </div>
+  </div>
+  <a class="btn-effect mobile-show" href="{% url 'handpicked' %}">SHOP NOW</a>
+</section>
+<section class="ingredient-index">     
+
+  <div class="leaf-container"></div>
+  <span class="pre">
+    <img src="{% static 'images/ii_left_arrow.svg' %}" alt="Previous Slide">
+  </span>
+  <span class="nex active">
+    <img src="{% static 'images/ii_right_arrow.svg' %}" alt="Next Slide">
+  </span>
+
+  <div class="splide" id="ii-splide">
+    <div class="splide__track">
+      <ul class="splide__list">
+        {% for x in ii_home %}
+            <li class="splide__slide">
+              <div class="ii-container" >
+                <div class="ii-text-container">
+                    {% for i in x.name %}
+                        <span class="ii_text">{{ i }}</span>
+                    {% endfor %}
+                </div>
+                <div class="ii-image">
+                  <img
+                  data-splide-lazy="{{ x.image.url }}"
+                  alt="{{ x.name }}"
+                  />
+                  <div class="mobile-show mobile-title">
+                    {% for i in x.name %}
+                        <span>{{ i }}</span>
+                    {% endfor %}
+                  </div>
+                  <div class="ii-box">
+                    <div class="letter-container"><div class="ii-bg"></div><span>{{ x.letter }}</span></div>
+                    <p onclick=window.location.href='{% url "ii_home" %}#{{x.letter}}' > <span class="ii-bg"></span><span>Ingredient <br> index</span></p>
+                  </div>
+                  <h1 class="heading">{{ x.name }}</h1>
+                  <p class="content font-content">
+                    {{ x.description }}
+                    <br>
+                  </p>
+                  <a href="{{ x.browse_link }}" class="btn-effect">BROWSE</a>
+                </div>
+              </div>
+            </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  
+
+</section>
+<section class="charcoax">
+  <div class="charcoax-main">
+    <div class="charcoax-image-box">
+      <span>HOW <br /> WE <br /> DO IT</span>
+      <div class="video-holder">
+        <div class="button-holder">
+          <button class='play-or-pause'></button>
+        </div>
+        <video class="demo-video">
+          <source src="{{ hdwdi.video.url }}" type="video/mp4">
+          Your browser does not support the video.
+        </video>
+      </div>
+    </div>
+
+    <div class="charcoax-content">
+      <div>
+        <span>HOW <br /> WE <br /> DO IT</span>
+        <h1>Our Process</h1>
+        <p class="font-content">
+          {{ hdwdi.description }}
+        </p>
+      </div>
+      <a href="{% url 'about' %}" class="btn-effect">Know more</a>
+    </div>
+  </div>
+</section>
+<!-- </div> -->
+
+<a onclick="window.scroll(0, 0);" class="go-to-top">&uparrow;</a>
+<script src="{% static 'js/home.js' %}"></script>
+
+<script>
+  $(window).on("load",function(){
+     $(".loading-animation").fadeOut("slow"); 
+  });
+</script>
+
+{% include 'footer.html' %}

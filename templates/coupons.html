@@ -1,0 +1,36 @@
+{% load static %}
+{% include "header.html" %}
+<link rel="stylesheet" href="{% static 'css/coupons.css' %}">
+<div class="main">
+<div class="nav"><a href="/">Home <span></span></a> / <a href=""> Coupons <span></span></a></div>
+    
+    {% if not coupons %}
+        <div class="flex-center no-coupons-container">
+            <h1 class="no-coupons">No coupons available</h1>
+        </div>
+    {% else %}
+        <div class="grid-container">
+            <div class="main-grid grid-head">
+                <div class="grid-head grid-title">Coupons</div>
+                <div class="grid-head grid-coupon">Coupon code</div>
+                <div class="grid-head grid-expiry">Expiry</div>
+                <div class="grid-head grid-remarks">Remarks</div>
+            </div>
+            <hr />
+            {% for coupon in coupons %}
+                <div class="main-grid">
+                    <div class="grid-title">{{ coupon.title }}</div>
+                    <div class="grid-coupon">{{ coupon.coupon_code }}</div>
+                    <div class="grid-expiry">{{ coupon.expiry|date:"d F Y" }}</div>
+                    <div class="grid-remarks">{{ coupon.description }}</div>
+                </div>
+                <hr />
+            {% endfor %}
+                
+
+        </div>
+    {% endif %}
+        
+
+</div>
+{% include "footer.html" %}

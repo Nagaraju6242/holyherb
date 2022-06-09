@@ -1,0 +1,74 @@
+.main {
+  padding: 3.125rem 8.75rem;
+}
+.nav a {
+  margin: 0 4px;
+  position: relative;
+}
+
+.nav a span {
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background-color: #2e2e2e;
+  bottom: 0;
+  right: 0;
+  -webkit-transition: width 0.35s ease;
+  -o-transition: width 0.35s ease;
+  transition: width 0.35s ease;
+}
+
+.nav a:hover span {
+  width: 100%;
+  left: 0;
+}
+
+.no-coupons-container {
+  height: 75vh;
+}
+
+.no-coupons {
+  color: #858585;
+  font: normal normal 500 2.8125rem/2.5rem Lato;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+}
+
+.grid-container {
+  padding: 3.125rem 5vw;
+  min-height: 75vh;
+}
+
+.grid-head {
+  font: normal normal 500 1rem/1rem Raleway;
+  letter-spacing: 0px;
+  color: #7c7c7c;
+}
+
+.grid-head {
+  text-align: center;
+}
+
+.grid-head.grid-title {
+  text-align: left;
+}
+
+.grid-coupon,
+.grid-expiry {
+  text-align: center;
+}
+
+.main-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+  grid-template-columns: repeat(4, 1fr);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-grid:not(.grid-head) {
+  color: #343434;
+  height: 5rem;
+}

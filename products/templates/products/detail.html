@@ -1,0 +1,312 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{ object.title }}",
+    "image": "{{ main_image.first.image.url }}",
+    "description": "{{ object.description }}",
+    "brand": {
+      "@type": "Brand",
+      "name": "Holyherb"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{{ object.avg_rating }}",
+      "reviewCount": "{{ object.reviews.all.count }}"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://holyherb.com{{ object.get_absolute_url }}",
+      "priceCurrency": "INR",
+      "price": "{{ object.quantity_price.last.price }}",
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+
+<div class="main">
+    <div class="product-images rellax" data-rellax-speed="-10">
+      <div class="nav">
+        <a class="capi" href="/">Home</a> &nbsp; / &nbsp; <a class="capi" href="/category/{{ object.category }}">{{ object.category }}</a> &nbsp; / &nbsp;
+        <a class="capi" href="/category/{{ object.category }}/{{ object.title }}" >{{ object.title }}</a> &nbsp; / &nbsp; <a class="capi" href="">{{ object.flavour }}</a>
+      </div>
+      <div class="title-flavour capi">
+        {{ object.flavour }}
+        <span class="capi">{{ object.title }}</span>
+      </div>
+      <div class="price-box">
+        <div>
+          <div class="top"><span class="rupee">₹</span><span id="price">{{ object.quantity_price.first.price }}</span><small class="inr">INR</small></div>
+          <div class="bottom">
+            <div class="price-grid">
+              <div>QTY</div>
+              <div class="line"></div>
+              <div class="qty-box"> <span class="dec" onclick="quantity_dec()">-</span> <span class="qty" id="quantity" >1</span> <span class="inc" onclick="quantity_inc()">+</span> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="image-box main_image">
+        {% if object.has_multiple_quantity_images %}
+          {% for x in images.main_image %}
+            <img class="product-image" src="{{ x.image.url }}" alt="{{ object.title }}" --data-price="{{ x.quantity.price }}">
+          {% endfor %}
+        {% else %}
+          <img class="product-image" src="{{ main_image.first.image.url }}" alt="{{ object.title }}">
+        {% endif %}
+          
+      </div>
+      
+      {% if object.has_multiple_quantity_images %}
+        <div class="image-box image-1">
+          {% for x in images.sub_main %}
+              <img class="product-image" src="{{ x.image.url }}" alt="{{ object.title }}" --data-price="{{ x.quantity.price }}">
+          {% endfor %}
+        </div>
+        <div class="image-box image-2">
+          {% for x in images.sub_left %}
+              <img class="product-image" src="{{ x.image.url }}" alt="{{ object.title }}" --data-price="{{ x.quantity.price }}">
+          {% endfor %}
+        </div>
+        <div class="image-box image-3">
+          {% for x in images.sub_right %}
+              <img class="product-image" src="{{ x.image.url }}" alt="{{ object.title }}" --data-price="{{ x.quantity.price }}">
+          {% endfor %}
+        </div>
+        <div class="image-box artistic">
+          {% for x in images.artistic %}
+            <img class="product-image" src="{{ x.image.url }}" alt="{{ object.title }}" --data-price="{{ x.quantity.price }}">  
+          {% endfor %}
+        </div>
+
+      {% else %}
+        {% if object.images.all.exists %}
+          {% for image_object in object.images.all|slice:":3" %}
+            <div class="image-box image-{{ forloop.counter }}">
+              <img class="product-image" src="{{ image_object.image.url }}" alt="{{ object.title }}">
+            </div>
+          {% endfor %}
+        {% endif %}
+        <div class="image-box artistic">
+          <img class="product-image" src="{{ artistic.first.image.url }}" alt="{{ object.title }}">
+        </div>
+      {% endif %}
+        
+
+    </div>
+    <div class="b">
+    <div class="content" >
+      <div class="rating-box">
+        {% for i in review %}
+          {% if i %}
+            <img class="star" src="{% static 'images/star-filled.svg' %}" alt="Star filled">
+            {% else %}
+            <img class="star" src="{% static 'images/star.svg' %}" alt="Star unfilled">
+          {% endif %}
+        {% endfor %}
+        <div class="reviews-num">
+          {% if object.reviews.all.count == 0 %}
+          No Reviews
+          {% elif object.reviews.all.count == 1 %}
+            1 Review
+          {% else %}
+            {{ object.reviews.all.count }} Reviews
+          {% endif %}
+        </div>
+      </div>
+      <div class="description">
+        {% for x in data %}
+          {% if x.0 == "extra" %}
+            <p>{{ x.1 }}</p>
+          {% else %}
+            <p><strong>{{ x.0 }} : </strong>{{ x.1 }}</p>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <form class="add-form" method="POST" action="/cart/update/">
+        {% csrf_token %}
+        <div class="quantity">
+          <span>Quantity:</span>
+          <div class="{% if object.quantity_price.count == 1 %}ali-left{% endif %}" >
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="product_id" value={{object.id}}>
+            {% if object.quantity_price.all.count == 1 %}
+              <div>
+                <input type="hidden" id="id-{{object.quantity_price.first.id}}" name="qp_id" value="{{object.quantity_price.first.id}}" --data-price="{{object.quantity_price.first.price}}">
+                <label for="id-{{object.quantity_price.first.id}}">{{ object.quantity_price.first.quantity }} {{ object.quantity_price.first.quantity_type }} </label>
+              </div>
+            {% else %}
+              {% for x in object.quantity_price.all %}
+                <div>
+                  
+                  {% if forloop.counter == 1 %}
+                    <input type="radio" id="id-{{x.id}}" name="qp_id" value="{{ x.id }}" --data-price="{{ x.price }}" checked>
+                  {% else %}
+                    <input type="radio" id="id-{{x.id}}" name="qp_id" value="{{ x.id }}" --data-price="{{ x.price }}" >                    
+                  {% endif %}
+
+                  <label for="id-{{x.id}}" class="radio-button"><span class="inner-radio"></span></label>
+                  <label for="id-{{x.id}}">{{ x.quantity }} {{ x.quantity_type }} </label>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="buttons-grid">
+          <button type="submit" class="track-add-to-cart add-to-cart btn-effect" value="add-to-cart" id="add-to-cart">ADD TO CART</button>
+          <a onclick="checkoutButton()" class="shop-now btn-effect btn-effect-dark" value="shop-now" id="add-to-cart-2">Checkout</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="reviews" id="reviews">
+  <div class="reviews-box">
+    <h1>Customer reviews</h1>
+    <div class="write-review-box">
+      <div class="rating">
+        {% for i in review %}
+          {% if i %}
+            <img class="star" src="{% static 'images/star-filled.svg' %}" alt="Star filled">
+            {% else %}
+            <img class="star" src="{% static 'images/star.svg' %}" alt="Star unfilled">
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="write-review">
+        <a href="javascript:void(0)" onclick="openReview()" >Write a Review</a>
+      </div>
+    </div>
+    {% if request.user.is_authenticated %}
+      <div class="write-review-main" style="display: none">
+        <hr>
+        <h2>Write a Review</h2>
+        <form action="{% url 'write-review' %}" method="POST" class="review-form">
+          {% csrf_token %}
+          <label for="review-number">Contact Number</label>
+          <input type="tel" pattern="[0-9]{10}" name="number" id="review-number" placeholder="Enter your contact number (This information will be confedential)" required>
+          <label for="rating-count">Rating</label>
+          <input type="hidden" name="product_id" value="{{ object.id }}">
+          <input type="hidden" name="rating" id="form-rating" value="1">
+          <div class="rating-container">
+            <svg onmouseover="starUpdate(0)" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 1.67043L15.2218 8.04086L15.3409 8.27626L15.6024 8.31088L22.8759 9.2738L17.5973 14.1356L17.3937 14.3231L17.4445 14.5951L18.7377 21.5279L12.2281 18.1908L12 18.0739L11.7719 18.1908L5.26142 21.5279L6.55551 14.5952L6.60629 14.3231L6.40273 14.1356L1.12407 9.2738L8.39762 8.31088L8.65913 8.27626L8.77818 8.04086L12 1.67043Z" fill="white" stroke="black"/>
+            </svg>
+
+            <svg onmouseover="starUpdate(1)" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 1.67043L15.2218 8.04086L15.3409 8.27626L15.6024 8.31088L22.8759 9.2738L17.5973 14.1356L17.3937 14.3231L17.4445 14.5951L18.7377 21.5279L12.2281 18.1908L12 18.0739L11.7719 18.1908L5.26142 21.5279L6.55551 14.5952L6.60629 14.3231L6.40273 14.1356L1.12407 9.2738L8.39762 8.31088L8.65913 8.27626L8.77818 8.04086L12 1.67043Z" fill="white" stroke="black"/>
+            </svg>
+
+            <svg onmouseover="starUpdate(2)" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 1.67043L15.2218 8.04086L15.3409 8.27626L15.6024 8.31088L22.8759 9.2738L17.5973 14.1356L17.3937 14.3231L17.4445 14.5951L18.7377 21.5279L12.2281 18.1908L12 18.0739L11.7719 18.1908L5.26142 21.5279L6.55551 14.5952L6.60629 14.3231L6.40273 14.1356L1.12407 9.2738L8.39762 8.31088L8.65913 8.27626L8.77818 8.04086L12 1.67043Z" fill="white" stroke="black"/>
+            </svg>
+
+            <svg onmouseover="starUpdate(3)" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 1.67043L15.2218 8.04086L15.3409 8.27626L15.6024 8.31088L22.8759 9.2738L17.5973 14.1356L17.3937 14.3231L17.4445 14.5951L18.7377 21.5279L12.2281 18.1908L12 18.0739L11.7719 18.1908L5.26142 21.5279L6.55551 14.5952L6.60629 14.3231L6.40273 14.1356L1.12407 9.2738L8.39762 8.31088L8.65913 8.27626L8.77818 8.04086L12 1.67043Z" fill="white" stroke="black"/>
+            </svg>
+
+            <svg onmouseover="starUpdate(4)" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 1.67043L15.2218 8.04086L15.3409 8.27626L15.6024 8.31088L22.8759 9.2738L17.5973 14.1356L17.3937 14.3231L17.4445 14.5951L18.7377 21.5279L12.2281 18.1908L12 18.0739L11.7719 18.1908L5.26142 21.5279L6.55551 14.5952L6.60629 14.3231L6.40273 14.1356L1.12407 9.2738L8.39762 8.31088L8.65913 8.27626L8.77818 8.04086L12 1.67043Z" fill="white" stroke="black"/>
+            </svg>
+          </div>
+          <label for="review-descrip">Review</label>
+          <textarea name="description" id="review-descrip" rows="1" placeholder="Type your review within 400 words" required></textarea>
+          <div class="submit-button">
+            <button type="submit" class="btn-effect" >Submit Review</button>
+          </div>
+        </form>
+      </div>
+    {% endif %}
+    {% for review in object.reviews.all %}
+      <div class="review">
+        <hr>
+        {% for i in ratinglist %}
+          {% if i <= review.rating|add:"0" %}
+            <img class="star" src="{% static 'images/star-filled.svg' %}" alt="Star filled">
+            {% else %}
+            <img class="star" src="{% static 'images/star.svg' %}" alt="Star Unfilled">
+          {% endif %}
+        {% endfor %}
+        <p class="review-des">{{ review.description }}</p>
+        <p class="review-user">{{ review.user.name }} on {{ review.timestamp }}</p>
+        <form action="/api/reportinappropriate/" method="POST" class="review-inapp-form">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{ review.id }}" />
+          <button type="submit">Report as inappropriate</button>
+        </form>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="related-products">
+  <h1>People Also Viewed</h1>
+  <div class="products">
+    {% for obj in related_products %}
+      <a href="{{ obj.get_absolute_url }}" alt="Link for Product">
+        <div class="product-card">
+          <form
+            class="add-to-wishlist"
+            method="POST"
+            action="{% url 'toggle-wishlist-api' %}"
+          >
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ obj.id }}" />
+            <button class="submit-toggle-wishlist" type="submit">
+              {% if obj in wishlist_items %}
+              <img
+                class="image-render"
+                src="{% static 'images/wishlist_full.png' %}"
+                alt="Add to wishlist"
+              />
+              {% else %}
+              <img
+                class="image-render"
+                src="{% static 'images/wishlist.png' %}"
+                alt="Add to wishlist"
+              />
+              {% endif %}
+            </button>
+          </form>
+          <img src="{{ obj.get_main_image_url }}" alt="Product Image" />
+          <div class="bottom-des">
+            <div class="des">{{ obj.title }} &#8209; {{ obj.flavour }} </div>
+            <form
+            action="{% url 'cart_update' %}"
+            method="POST"
+            class="product-form" >
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ obj.id }}" />
+            <input type="submit" class="track-add-to-cart" value="ADD TO CART" />
+          </form>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  if("{{ object.has_multiple_quantity_images }}" == "True"){
+    var multiple_images = true
+  }else{
+    var multiple_images = false
+  }
+  var price = $(".add-form input[type='radio'][name='qp_id']:checked").attr("--data-price")
+  if (multiple_images) {
+    $(".product-image").hide();
+    $(`.product-image[--data-price='${price}']`).show();
+  }
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+<script src="{% static 'js/product-detail.js' %}" ></script>
+{% include 'footer.html' %}

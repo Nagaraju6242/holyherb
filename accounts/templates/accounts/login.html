@@ -1,0 +1,38 @@
+{% load static %} {% include 'header.html' %}
+<div class="login_flex_container">
+  <div class="page_login">
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+      <h3>Login</h3>
+      <label for="email"
+        >Enter your Email ID / Mobile number
+        <span class="text-danger">*</span></label
+      ><br />
+      <input type="text" name="username" class="email" />
+      <br />
+      <label for="password">Password <span class="text-danger">*</span></label>
+      <br />
+      <input type="password" name="password" class="password" />
+      <br />
+      <input type="submit" value="Continue" class="submit-button" />
+    </form>
+    <h4>Or login with</h4>
+    <div class="scoial_login">
+      <a class="google_login" href="javascript:void(0)"
+        >Google <img src="{% static 'images/google.png' %}" alt="Google"
+      /></a>
+      <a class="facebook_login" href=""
+        >facebook <img src="{% static 'images/facebook.png' %}" alt="Facebook"
+      /></a>
+    </div>
+    <a class="new_register" href="{% url 'register' %}">
+      New to HolyHerb? <u> Create an account</u>
+    </a>
+  </div>
+</div>
+
+<script>
+  window.location.href = "/"
+</script>
+
+{% include 'footer.html' %}

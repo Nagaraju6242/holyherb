@@ -1,0 +1,32 @@
+{% include 'header.html' %}
+
+<h1>Email : {{ user.email }}</h1>
+<h1>Name : {{ user.name }}</h1>
+<h1>Number : {{ user.number }}</h1>
+
+<a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Order id</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tbody class="cart-body">
+    {% for order in orders %}
+    <tr class="cart-product">
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ order.order_id }}</td>
+      <td>{{ order.total }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  window.location.href = "/"
+</script>
+
+{% include 'footer.html' %}

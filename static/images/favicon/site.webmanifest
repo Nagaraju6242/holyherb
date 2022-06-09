@@ -1,0 +1,21 @@
+{
+  "name": "Holyherb",
+  "short_name": "Holyherb",
+  "description": "We at “Holy Herb” aim on making products which are skin friendly, which are free from all these harmful chemicals and artificial colours and fragrances , restoring the age old methods of skin care using oils, essential oils, and natural ingredients.",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/static/images/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/images/favicon/android-chrome-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#227c26",
+  "background_color": "#e8eedd",
+  "display": "standalone"
+}

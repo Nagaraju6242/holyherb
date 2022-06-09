@@ -1,0 +1,54 @@
+{% load static %} {% include 'header.html' %}
+<link rel="stylesheet" href="{% static 'css/ii_home.css' %}">
+
+<div class="main">
+    <div class="nav">
+        <a href="/">Home <span></span></a>  <span style="margin:0 2px;">/</span> 
+        <a href="">Ingredients Index <span></span></a>
+    </div>
+
+    <h1 class="main-heading">Ingredient Index</h1>
+    
+    <div class="c-index-alphabetical_list">
+        {% for letter in letters %} {% if letter == "n" %}
+        <div class="c-index-alphabtical_item is-active" data-letter="{{ letter }}">
+            <span>{{ letter|upper }}</span>
+        </div>
+        {% else %}
+        <div class="c-index-alphabtical_item" data-letter="{{ letter }}">
+            <span>{{ letter|upper }}</span>
+        </div>
+        {% endif %} {% endfor %}
+    </div>
+
+    <div class="c-index-results">
+        {% for key,x in data.items %}
+            
+            {% if key == "n" %}
+                <div class="result-box is-active" data-letter="{{ key }}">
+                    {% for item in x %}
+                        <div class="c-index-item" >
+                            <a href="/ingredients/{{item.name}}">{{ item.name }} <span></span> </a>
+                        </div>
+                    {% endfor %}
+                </div>   
+            {% else %}
+                <div class="result-box" data-letter="{{ key }}">
+                    {% for item in x %}
+                        <div class="c-index-item">
+                            <a href="/ingredients/{{item.name}}">{{ item.name }} <span></span> </a>
+                        </div>
+                    {% endfor %}
+                </div>           
+                            
+            {% endif %}
+                
+        {% endfor %}
+    </div>
+
+</div>
+
+
+<script src="{% static 'js/ii_home.js' %}"></script>
+
+{% include 'footer.html' %}

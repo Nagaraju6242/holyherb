@@ -1,0 +1,1367 @@
+.main-carousel {
+  max-height: calc(100vh - var(--header-height));
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.main-carousel-item {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.main-carousel-item .item-content {
+  position: absolute;
+  left: 10vw;
+  top: 10vh;
+  z-index: 11;
+  text-align: left;
+  letter-spacing: 0.1375rem;
+  color: #080808;
+  text-transform: capitalize;
+  padding-right: 60%;
+}
+
+.main-carousel-item .item-content h1 {
+  font: italic normal 600 2.5rem/2.8125rem Raleway;
+}
+
+.main-carousel-item .item-content p {
+  font: italic normal normal 1.375rem/1.75rem Raleway;
+}
+
+.prev,
+.next {
+  position: absolute;
+  width: 6.25rem;
+  top: 0;
+  height: calc(100vh - 100px);
+  cursor: pointer;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: 0.5;
+  pointer-events: none;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.prev.active span,
+.next.active span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.next.active span {
+  background: transparent -webkit-gradient(linear, right top, left top, from(#000000), to(#ffffff00)) 0%
+    0% no-repeat padding-box;
+  background: transparent -o-linear-gradient(right, #000000 0%, #ffffff00 100%) 0%
+    0% no-repeat padding-box;
+  background: transparent linear-gradient(270deg, #000000 0%, #ffffff00 100%) 0%
+    0% no-repeat padding-box;
+}
+
+.prev.active span {
+  background: transparent -webkit-gradient(linear, left top, right top, from(#000000), to(#ffffff00)) 0%
+    0% no-repeat padding-box;
+  background: transparent -o-linear-gradient(left, #000000 0%, #ffffff00 100%) 0%
+    0% no-repeat padding-box;
+  background: transparent linear-gradient(90deg, #000000 0%, #ffffff00 100%) 0%
+    0% no-repeat padding-box;
+}
+
+.prev svg,
+.next svg {
+  opacity: 1 !important;
+}
+
+.prev.active:hover span,
+.next.active:hover span {
+  opacity: 1;
+}
+
+.prev.active,
+.next.active {
+  pointer-events: initial;
+}
+
+.next {
+  right: 0;
+}
+
+.locate-lines {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+}
+
+.locate-lines .line {
+  width: 5.75rem;
+  height: 0.4375rem;
+  background-color: #fff;
+  margin: 0 0.3125rem;
+  display: inline-block;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.line .inner-line {
+  position: absolute;
+  width: 0;
+  height: 0.4375rem;
+  background-color: #7eaa24;
+  border-radius: 0.625rem;
+}
+
+.inner-line.loading {
+  -webkit-animation: carousel-loading 4s linear;
+          animation: carousel-loading 4s linear;
+}
+
+.inner-line.filled {
+  width: 5.75rem;
+}
+
+.main-carousel img {
+  width: 100%;
+  background-size: cover;
+}
+
+.neem {
+  padding: 6.25rem 8vw 6.25rem 10vw;
+  position: relative;
+  background-color: #fff;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 4.375rem 56vw;
+  grid-template-columns: 1fr 56vw;
+  -webkit-column-gap: 4.375rem;
+     -moz-column-gap: 4.375rem;
+          column-gap: 4.375rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.neem .descrip {
+  text-align: center;
+  background-color: #fffce9;
+  font: italic normal normal 1.125rem/1.875rem Raleway;
+  height: 70%;
+  padding: 4.375rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.neem .descrip .des-title{
+  display: none;
+  font: normal normal 600 12px/15px Lato;
+  letter-spacing: 0px;
+  color: #080808;
+  margin-bottom: 1.5rem;
+}
+
+.neem .video-holder {
+  width: 56vw;
+  position: relative;
+}
+
+.neem .video-holder video {
+  width: 100%;
+}
+
+.neem .video-holder .button-holder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 50%;
+  width: 4.5rem;
+  height: 4.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.neem .video-holder .button-holder .play-or-pause,
+.charcoax .video-holder .button-holder .play-or-pause{
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: 40%;
+
+  border-color: transparent transparent transparent #202020;
+  transition: 100ms all ease;
+  cursor: pointer;
+
+  border-style: solid;
+  border-width: 1rem 0 1rem 2rem;
+  -webkit-transform: translateX(15%);
+      -ms-transform: translateX(15%);
+          transform: translateX(15%);
+}
+
+.neem .video-holder .button-holder .play-or-pause.paused,
+.charcoax .video-holder .button-holder .play-or-pause.paused {
+    border-style: double;
+    border-width: 0px 0 0px 2rem;
+  }
+
+.neem .video-holder .button-holder .play-or-pause:focus,
+.charcoax .video-holder .button-holder .play-or-pause:focus {
+  outline: none;
+}
+
+.neem .video-holder .button-holder .play-or-pause.paused,
+.charcoax .video-holder .button-holder .play-or-pause.paused {
+  -webkit-transform: translateX(5%);
+      -ms-transform: translateX(5%);
+          transform: translateX(5%);
+}
+
+.neem .video-holder .button-holder:hover .play-or-pause,
+.charcoax .video-holder .button-holder:hover .play-or-pause {
+  border-color: transparent transparent transparent #404040;
+}
+
+.neem_img_box {
+  position: absolute;
+  width: 12%;
+  top: 69%;
+  left: 29%;
+  -webkit-transform: translateX(-50px);
+      -ms-transform: translateX(-50px);
+          transform: translateX(-50px);
+}
+
+.neem_img_box span {
+  position: absolute;
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  left: 0.3125rem;
+  bottom: 0;
+  font-size: 1.5625rem;
+  -webkit-transform-origin: bottom left;
+      -ms-transform-origin: bottom left;
+          transform-origin: bottom left;
+}
+
+.neem_img {
+  width: 100%;
+}
+
+/* Products Section  */
+.products {
+  position: relative;
+  background-color: #fffbfa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+}
+
+.products h1.mobile-show{
+  font: normal normal 600 14px/17px Lato;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #080808;
+  text-transform: uppercase;
+}
+
+.products .choose {
+  padding: 9.375rem 3.75rem;
+  background-color: #fff9f8;
+  width: 30%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+}
+
+.choose h1 {
+  text-transform: uppercase;
+  font: normal normal 600 1.875rem/2.5rem Lato;
+  color: #080808;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.choose p {
+  font: italic normal normal 1.125rem/1.875rem Raleway;
+  color: #080808;
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: 0rem;
+  margin: 1.875rem 0.3125rem;
+}
+
+.choose a ,.products a.btn-effect.mobile-show{
+  margin: 0.625rem auto 0;
+  border: 0.0625rem solid #000000;
+  width: 16.25rem;
+  height: 3.75rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #fff;
+  text-decoration: none;
+  font: normal normal normal 0.9375rem/2.5rem Royal Crescent;
+  color: #080808;
+  z-index: 1;
+}
+
+.choose a{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.choose img {
+  opacity: 0.5;
+  -webkit-transition: all 30s linear;
+  -o-transition: all 30s linear;
+  transition: all 30s linear;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.products .products_scroll {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 0;
+  padding-bottom: 9.375rem;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.products .products_scroll .products_scroll_div {
+  padding: 9.375rem 0 0;
+}
+
+.products .products_scroll .splide * {
+  cursor: var(--drag-cursor-png) 64 35, auto !important;
+}
+
+.products .products_scroll .owl-item {
+  width: 19.3vw !important;
+}
+
+.products .products_scroll img {
+  height: 55vh;
+  margin: 0 1.25rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.products .products_scroll {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.products .products_scroll::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.scroll_buttons {
+  position: absolute;
+  right: 3.125rem;
+  bottom: 3.125rem;
+}
+
+.scroll_buttons button {
+  border: none;
+  background-color: transparent;
+  font-size: 2.5rem;
+  color: #707070;
+  margin: 0 0.3125rem;
+}
+
+.scroll_buttons button svg {
+  -webkit-transform: scale(0.66);
+      -ms-transform: scale(0.66);
+          transform: scale(0.66);
+}
+
+.scroll_buttons button:focus {
+  outline: none;
+}
+
+/* Section Charcoal */
+
+.splide__arrows,
+.splide__pagination {
+  display: none !important;
+}
+
+section.ingredient-index {
+  overflow: hidden;
+  min-height: calc(100vh + 100px);
+  position: relative;
+}
+
+section.ingredient-index .leaf-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+section.ingredient-index .leaf-container img {
+  -webkit-transition: all 30s linear;
+  -o-transition: all 30s linear;
+  transition: all 30s linear;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+section.ingredient-index .splide {
+  height: calc(100vh + 100px);
+}
+
+section.ingredient-index .ii-container {
+  position: relative;
+  height: 100vh;
+}
+
+section.ingredient-index .pre {
+  position: absolute;
+  left: 10vw;
+  bottom: 25vh;
+  z-index: 10;
+  opacity: 0.5;
+  -webkit-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  padding: 10px;
+}
+
+section.ingredient-index .pre img,
+section.ingredient-index .nex img {
+  width: 5.5rem;
+}
+
+section.ingredient-index .pre.active,
+section.ingredient-index .nex.active {
+  opacity: 1;
+  cursor: pointer;
+}
+
+section.ingredient-index .pre.active:hover {
+  -webkit-transform: translateX(-10%);
+      -ms-transform: translateX(-10%);
+          transform: translateX(-10%);
+}
+
+section.ingredient-index .nex.active:hover {
+  -webkit-transform: translateX(10%);
+      -ms-transform: translateX(10%);
+          transform: translateX(10%);
+}
+
+section.ingredient-index .nex {
+  position: absolute;
+  right: 5vw;
+  bottom: 25vh;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.5;
+  -webkit-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  padding: 10px;
+}
+
+.ingredient-index .ii-image {
+  position: absolute;
+  width: 56.66vw;
+  left: 12.5vw;
+  top: 24vh;
+}
+
+.ingredient-index .ii-image img {
+  width: 100%;
+}
+
+.ingredient-index .ii-image .ii-box {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 6.875rem;
+  height: 11rem;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 4.75rem;
+  grid-template-rows: 1fr 4.75rem;
+  border: 0.0313rem solid #000;
+  overflow: hidden;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.ingredient-index .splide__slide.is-active .ii-box .letter-container {
+  -webkit-animation: ii-box-animation 1s ease forwards;
+          animation: ii-box-animation 1s ease forwards;
+}
+
+.ii-box.dark .letter-container {
+  color: #fff;
+}
+
+.ii-box.dark p {
+  background-color: transparent;
+  color: #000;
+}
+
+.ii-box .letter-container {
+  font: normal normal normal 5.625rem/7.0625rem Royal Crescent;
+  position: relative;
+}
+
+.ii-box .letter-container span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translateX(5px);
+      -ms-transform: translateX(5px);
+          transform: translateX(5px);
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  text-transform: uppercase;
+}
+
+.ii-box .letter-container .ii-bg {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  -webkit-transition: height 0.5s ease;
+  -o-transition: height 0.5s ease;
+  transition: height 0.5s ease;
+}
+
+.ii-box.dark .letter-container .ii-bg {
+  height: 100%;
+}
+
+.ii-box p {
+  position: relative;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.ii-box p .ii-bg,
+.ii-box-main p .ii-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: height 0.5s ease;
+  -o-transition: height 0.5s ease;
+  transition: height 0.5s ease;
+  background-color: #000;
+}
+
+.ii-box.dark p .ii-bg,
+.ii-box-main.dark p .ii-bg {
+  height: 0;
+}
+
+.ii-box.dark p span:not(.ii-bg),
+.ii-box-main.dark p span:not(.ii-bg) {
+  color: #000;
+}
+
+.ii-box p span:not(.ii-bg) {
+  color: #fff;
+  margin: 0;
+  height: 4.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font: normal normal normal 0.875rem/1.25rem Royal Crescent;
+  text-transform: uppercase;
+  text-align: center;
+  -webkit-transform: translateY(-5px);
+      -ms-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.ingredient-index .ii-image h1.heading {
+  position: absolute;
+  right: 0;
+  top: 10%;
+  text-align: center;
+  font: normal normal 900 1.875rem/2.5rem Lato;
+  letter-spacing: 0rem;
+  color: #080808;
+  text-transform: uppercase;
+  -webkit-transform: translateX(50%);
+      -ms-transform: translateX(50%);
+          transform: translateX(50%);
+}
+
+.ingredient-index .splide__slide.is-active .ii-image h1.heading {
+  -webkit-animation: ii-title-animation 1s ease forwards;
+          animation: ii-title-animation 1s ease forwards;
+}
+
+.ingredient-index .ii-image p.content {
+  width: 20vw;
+  position: absolute;
+  right: -1.25rem;
+  top: 20%;
+  -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+          transform: translateX(100%);
+  font: italic normal normal 1.125rem/1.875rem Raleway;
+}
+
+.ingredient-index .ii-image a {
+  position: absolute;
+  top: 70%;
+  right: -1.25rem;
+  -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+          transform: translateX(100%);
+  text-align: left;
+  font: normal normal normal 0.9375rem/2.5rem Royal Crescent;
+  letter-spacing: 0rem;
+  color: #080808;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 9.375rem;
+  height: 3.125rem;
+  border: 0.0625rem solid #000000;
+  margin: 1.875rem 0;
+}
+
+.ii-text-container {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  top: 24vh;
+  max-height: calc(100vh - 80px);
+  width: 11vw;
+  -webkit-transform: translateY(-50px);
+      -ms-transform: translateY(-50px);
+          transform: translateY(-50px);
+  height: calc((56.66vw / 1.582) + 100px);
+}
+
+.ii-text-container.ii-text-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.ii-text-container.ii-text-center span {
+  margin: 2.5rem;
+}
+
+.ii-container .ii_text {
+  color: #3d3d3d14;
+  text-transform: uppercase;
+  font-size: 7.125rem;
+  font-weight: 400;
+  line-height: 0;
+  -webkit-transform: rotateZ(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotateZ(-90deg);
+}
+
+/* Charcoax Designing starts */
+section.charcoax {
+  padding: 3.125rem 0;
+  color: #080808;
+  height: 100vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.charcoax-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* width: 50%; */
+}
+
+.charcoax-image-box {
+  height: 67vh;
+  position: relative;
+  -webkit-transform: translate(10%, -10%);
+      -ms-transform: translate(10%, -10%);
+          transform: translate(10%, -10%);
+}
+
+.charcoax-main .video-holder{
+  position: relative;
+  height: 100%;
+}
+
+
+.charcoax-main .video-holder video{
+  width: 100%;
+  height: 100%;
+}
+
+.charcoax-main .video-holder .button-holder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 50%;
+  width: 4.5rem;
+  height: 4.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.charcoax-main .video-holder .button-holder .play-or-pause {
+  -webkit-transform: translateX(15%);
+      -ms-transform: translateX(15%);
+          transform: translateX(15%);
+}
+
+.charcoax-main .video-holder .button-holder .play-or-pause:focus {
+  outline: none;
+}
+
+.charcoax-main .video-holder .button-holder .play-or-pause.paused {
+  -webkit-transform: translateX(5%);
+      -ms-transform: translateX(5%);
+          transform: translateX(5%);
+}
+
+.charcoax-main .video-holder .button-holder:hover .play-or-pause {
+  border-color: transparent transparent transparent #404040;
+}
+
+.charcoax-image-box span {
+  font: normal normal normal 1.5625rem/2.5rem Royal Crescent;
+  text-align: right;
+  position: absolute;
+  top: 10%;
+  left: 0;
+  -webkit-transform: translateX(-110%);
+      -ms-transform: translateX(-110%);
+          transform: translateX(-110%);
+}
+
+.charcoax-content {
+  width: 33vw;
+  height: 67vh;
+  padding: 3.125rem;
+  padding-left: 4.6875rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #faffee;
+}
+
+.charcoax-content span{
+  display: none;
+}
+
+.charcoax-content h1 {
+  font: normal normal 600 1.8125rem/2.5rem Lato;
+  text-align: center;
+}
+
+.charcoax-content p {
+  text-align: center;
+  font: italic normal normal 1.125rem/1.875rem Raleway;
+}
+
+.charcoax-content a {
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  font: normal normal normal 0.9375rem/2.5rem Royal Crescent;
+  height: 3.75rem;
+  width: calc(40% + 50px);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 0.0625rem solid #000;
+  z-index: 1;
+}
+
+#offerBannerModal .modal-content {
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: calc(100vw - 25rem);
+}
+
+#offerBannerModal .modal-content img {
+  border: 1px solid #000;
+}
+
+#offerBannerModal .modal-content .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+#offerBannerModal .modal-content .offer-des {
+  position: absolute;
+  right: 0;
+  top: 70%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background-color: #000;
+  color: #fff;
+  font-family: Raleway;
+  padding: 1.25rem 2.5rem;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+#offerBannerModal .modal-content a.shop-now {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: #fff;
+  color: #000;
+  font-family: Raleway;
+  padding: 0.8rem 3rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+@-webkit-keyframes loading-animation {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes loading-animation {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@-webkit-keyframes ii-box-animation {
+  0% {
+    -webkit-transform: translate(75%, 0);
+            transform: translate(75%, 0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes ii-box-animation {
+  0% {
+    -webkit-transform: translate(75%, 0);
+            transform: translate(75%, 0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes ii-title-animation {
+  0% {
+    -webkit-transform: translate(100%, 0);
+            transform: translate(100%, 0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(50%, 0);
+            transform: translate(50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes ii-title-animation {
+  0% {
+    -webkit-transform: translate(100%, 0);
+            transform: translate(100%, 0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate(50%, 0);
+            transform: translate(50%, 0);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width:1279px){
+  .neem .descrip{
+    padding: 2.375rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .main-carousel-item {
+    height: auto;
+  }
+
+  .neem {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    padding: 6.25rem 0;
+  }
+
+  .neem .video-holder{
+    width: 100%;
+  }
+
+  .neem .video-holder .button,.charcoax-main .video-holder .button {
+    width: 6vw;
+    height: 6vw;
+  }
+
+  .neem .descrip {
+    height: auto;
+    width: calc(100% - 16rem);
+    font: italic normal normal 10px/17px Raleway;
+    margin-top: 6.25rem;
+    padding: 2.375rem;
+  }
+
+  .neem .descrip .des-title{
+    display: block;
+  }
+
+  .neem .neem_img_box {
+    display: none;
+  }
+
+  .charcoax-content{
+    width: 42vw;
+  }
+
+}
+
+@media screen and (max-width: 650px) {
+
+  #offerBannerModal .modal-content{
+    width: calc(100vw - 5rem);
+    height: 80vh;
+  }
+
+  #offerBannerModal .modal-content img {
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+
+  #offerBannerModal .modal-content .offer-des{
+    top: 75%;
+    font-size: 1.5rem;
+  }
+
+  #offerBannerModal .modal-content a.shop-now{
+    font-size: 2rem;
+  }
+
+  .main-carousel .main-carousel-item img{
+    height: 80vh;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+  }
+
+  .main-carousel .main-carousel-item .item-content{
+    display: none;
+  }
+
+  .products{
+    display: block;
+    background-color: #fff;
+  }
+
+  .products .mobile-show{
+    display: block;
+  }
+
+  .products .choose{
+    display:none;
+  }
+
+  .products .products_scroll {
+    padding-bottom: 2rem;
+  }
+
+  .products .products_scroll .products_scroll_div{
+    padding: 2rem 0 0;
+  }
+
+  .products .products_scroll img{
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  .products a.btn-effect.mobile-show{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font: normal normal normal 10px/19px Royal Crescent;
+  }
+
+  .products .scroll_buttons{
+    display: none;
+  }
+
+  .neem .descrip {
+    width: calc(100% - 12rem);
+    font: italic normal normal 16px/26px Raleway;
+  }
+
+  .neem .descrip .des-title {
+    font: normal normal 600 24px/48px Lato;
+  }
+
+  .ingredient-index .ii-image p.content {
+    font: italic normal normal 2.125rem/2.875rem Raleway;
+  }
+
+  .products h1.mobile-show {
+    font: normal normal 600 22px/50px Lato;
+  }
+
+  section.ingredient-index {
+    min-height: auto;
+    margin-top: 10rem;
+    overflow: initial;
+  }
+
+  section.ingredient-index .ii-container{
+    height: auto;
+  }
+
+  section.ingredient-index .splide__track{
+    overflow: initial;
+  }
+
+  section.ingredient-index .splide{
+    height:auto;
+  }
+
+  .ii-container .ii-image .heading{
+    display:none;
+  }
+
+  .ii-container .ii-text-container {
+    display:none;
+  }
+
+  .ingredient-index .ii-image {
+    position: static;
+    width: 100%;
+  }
+
+  .ingredient-index .ii-image p.content{
+    position:static;    
+    width: 100%;
+    padding: 4rem;
+    padding-bottom: 2rem;
+    -webkit-transform: translate(0,0);
+        -ms-transform: translate(0,0);
+            transform: translate(0,0);
+  }
+
+  .ingredient-index .ii-image a{
+    position:static;
+    -webkit-transform: translate(0,0);
+        -ms-transform: translate(0,0);
+            transform: translate(0,0);
+    width: 30%;
+    height: 5rem;
+    margin: 1.5rem auto;
+    font: normal normal normal 1.9375rem/2.5rem Royal Crescent;
+  }
+
+  .charcoax-content p {
+    font: italic normal normal 2.125rem/2.875rem Raleway;
+  }
+
+  .ingredient-index .ii-image .mobile-show{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack:justify;
+        -ms-flex-pack:justify;
+            justify-content:space-between;
+    position: absolute;
+    top: 0;
+    -webkit-transform: translateY(-120%);
+        -ms-transform: translateY(-120%);
+            transform: translateY(-120%);
+    left: calc(10% + 8rem);
+    width: calc(90% - 10rem);
+    padding: .5rem 5rem;
+    font: normal normal normal 20px/20px Lato;
+    color: #3D3D3D14;
+    text-transform: uppercase;
+  }
+
+  section.ingredient-index .pre,
+  section.ingredient-index .nex {
+    bottom: 0;
+  }
+
+  section.charcoax{
+    padding: 5rem 0;
+    display: block;
+    height: auto;
+  }
+
+  section.charcoax .charcoax-main{
+    display: block;
+  }
+
+  section.charcoax .charcoax-image-box{
+    height: auto;
+    width: 90%;
+    margin: 0 auto;
+    position: static;
+    -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+
+  section.charcoax .charcoax-image-box span{
+    display: none;
+  }
+
+  section.charcoax .charcoax-image-box img{
+    width: 100%;
+    height: auto;
+  }
+
+  .charcoax-content{
+    height: auto;
+    background-color: #fff;
+    width: 100%;
+  }
+
+  .charcoax-content > div{
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto 2rem 1fr;
+    grid-template-columns: auto 1fr;
+    -webkit-column-gap:2rem;
+       -moz-column-gap:2rem;
+            column-gap:2rem;
+  }
+
+  .charcoax-content > div h1{
+    display: none;
+  }
+
+  .charcoax-content span{
+    display: block;
+    font: italic normal normal 2.125rem/2.875rem Raleway;
+  }
+
+  .charcoax-content > div p.font-content{
+    text-align: left;
+  }
+
+  .charcoax-content a{
+    width: 45%;
+    margin-top: 2rem;
+    font: normal normal normal 1.75rem/2.5rem Royal Crescent;
+    height: 5.75rem;
+  }
+
+  .charcoax-main .video-holder video{
+    width: 75%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Additional Misc */
+  #herobannersplide-slide04 .main-carousel-item img{
+    -o-object-position: 88% center;
+       object-position: 88% center;
+  }
+}

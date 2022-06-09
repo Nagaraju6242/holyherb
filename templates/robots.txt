@@ -1,0 +1,43 @@
+User-agent: *
+Disallow: /*.pdf
+Disallow: /*.ppt
+Disallow: /*.doc
+Disallow: /*.xls
+Disallow: /*.txt
+
+User-agent: Yandex
+Allow: /products
+Allow: /category
+Allow: /contact
+Allow: /about
+Allow: /search
+Allow: /termsandconditions
+Allow: /privacypolicy
+
+Disallow: /admin
+Disallow: /checkout
+Disallow: /api
+Disallow: /cart
+Disallow: /coupons
+Disallow: /accounts
+Crawl-delay: 3
+
+User-agent: Googlebot
+Allow: /products
+Allow: /category
+Allow: /contact
+Allow: /about
+Allow: /search
+Allow: /termsandconditions
+Allow: /privacypolicy
+Allow: /orders
+
+Disallow: /admin
+Disallow: /checkout
+Disallow: /api
+Disallow: /cart
+Disallow: /coupons
+Disallow: /accounts
+Crawl-delay: 3
+
+Host: https://holyherb.com

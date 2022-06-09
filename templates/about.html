@@ -1,0 +1,45 @@
+{% load static %}
+{% include 'header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+<div class="navi">
+    <a class="get-line" href="/">Home <span></span></a> <span class="space"></span> / <span class="space"></span>
+    <a class="get-line" href="">About <span></span></a>
+</div>
+<div class="main-about"></div>
+<div class="dark-film"></div>
+<div class="logo-about">
+    <img src="{% static 'images/logo.svg' %}" alt="Holyherb Logo">
+</div>
+<div class="text-about"> 
+    Our skin is the largest and the most sensitive organ of the body and hence skin care the most important part of our daily routine. But treating skin with products induced with chemicals and artificial fragrances ,which are green marketed , might make our skin glow at first but in the long run use of such products only worsen the health of our skin. <br> <br>
+We at “ Holy Herb ” aim on making products which are skin friendly, which are free from all these harmful chemicals and artificial colours and fragrances , restoring the age old methods of skin care using oils, essential oils, and natural ingredients. Every ingredient that we include in our products is there for a specific therapeutic reason. We do not use fillers of any kind, meaning that almost every ingredient in our products is an “active” ingredient. <br><br> This results in pure, highly concentrated, and effective formulas that are a rarity in the skincare and cosmetics world today. We believe that being a part of nature only nature has the power to cure and beautify oneself both physically and spiritually . we believe in promoting “Green Products” and not “Green Marketing” 
+</div>
+<div class="values-about">
+    <h1>Our Values</h1>
+    <div class="values-box-about">
+        <div class="values-item-about">
+            <div class="image-holder" ><img src="{% static 'images/value-icons/100_ NATURAL AND VEGAN.svg' %}" alt="NATURAL AND VEGAN"></div>
+        </div>
+        <div class="values-item-about">
+            <div class="image-holder" ><img src="{% static 'images/value-icons/CRUELTY FREE.svg' %}" alt="CRUELTY FREE"></div>
+        </div>
+        <div class="values-item-about">
+            <div class="image-holder" ><img src="{% static 'images/value-icons/HANDCRAFTED.svg' %}" alt="HANDCRAFTED"></div>
+        </div>
+        <div class="values-item-about">
+            <div class="image-holder" ><img src="{% static 'images/value-icons/NO ARTIFICIAL FRAGRANCES.svg' %}" alt="NO ARTIFICIAL FRAGRANCES"></div>
+        </div>
+        <div class="values-item-about">
+            <div class="image-holder" ><img src="{% static 'images/value-icons/PARABEN FREE.svg' %}" alt="PARABEN FREE"></div>
+        </div>
+        <div class="values-item-about">
+            <div class="image-holder" ><img src="{% static 'images/value-icons/SULFATE FREE.svg' %}" alt="SULFATE FREE"></div>
+        </div>
+    </div>
+    
+</div>
+
+<script src="{% static 'js/about.js' %}"></script>
+{% include "footer.html" %}
